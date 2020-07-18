@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171796834-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-171796834-1');
+    </script>
+
+    <meta prefix="og: http://ogp.me/ns#" property="og:title" content="Personal Website">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="http://andyjiang.me/img/project/fliz.png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:description" content="Showcase projects and skills">
+    <meta prefix="og: http://ogp.me/ns#" property="og:url" content="https://www.andyjiang.me">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:type" content="image/png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1024">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="1024">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicons/favicon-32x32.png" type="image/png">
+    <title>Home | Andy Jiang</title>
+    <!--Bootstrap and main CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!--================ NAVIGATION AREA =================-->
+    <!--
+    <header class="header_area" id="header">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav justify-content-end">
+                            <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="playground.html">Playground</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    -->
+    <!--================ INTRO AREA =================-->
+    <!--
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Dev</h2>
+                    <div class="page_link">
+                        <a href="andyjiang.me/">Home</a>
+                        <a href="dev.andyjiang.me/">Dev</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!--================ PIG LATIN TRANSLATOR =================-->
+    <section class="pig-latin">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="main_title">
+                        <h2>Pig-Latin Web Page Translator</h2>
+                    </div>
+                    <p class="des">Translate HTML files to working Pig Latin HTML file using standard translation rules.</p>
+                </div>
+            </div>
+
+            <form class="code-input-forms row">
+                <div class="col-lg-6">
+                    <div class="text-shadow">
+                        <textarea id="original-txt" placeholder="Original HTML file"></textarea>
+                    </div>
+                    <button onclick="onConvertClicked()" class="convert_btn" type='button'><span>Convert</span></button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-shadow">
+                        <textarea id="pig-latin-txt" placeholder="Pig-Latin HTML file" readonly></textarea>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <!--================ HOW IT WORKS =================-->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title text-left">
+                        <h2>How It Works</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <img class="steps-img" src="img/steps/1.png"></img>
+                    <div>
+                        <p class="des">Scans through file and ignore HTML tags, only translating the content to Pig Latin.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <img class="steps-img" src="img/steps/2.png"></img>
+                    <p class="des">Skip pass items that fits the pattern of &text;. These are HTML character entitites' name and must be kept the same.</p>
+                </div>
+                <div class="col-lg-4">
+                    <img class="steps-img" src="img/steps/3.png"></img>
+                    <p class="des">Determine content of the HTML file that is visible to users and translate it based on Pig Latin rules</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--================ PIG LATIN RULES =================-->
+    <section class="pig-latin-rules">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title text-left">
+                        <h2>Pig Latin Rules</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="rules">
+                        <h5>1. </h5>
+                        <p class="des">A word to be translated is a consecutive sequence of letters (a-z, A-Z) or apostrophes, containing at least one vowel or y in a vowel position.</p>
+                    </div>
+                    <div class="rules">
+                        <h5>2. </h5>
+                        <p class="des">If a word starts with a vowel, the Pig Latin version is the original word with "way" added to the end</p>
+                    </div>
+                    <div class="rules">
+                        <h5>3. </h5>
+                        <p class="des">If a word starts with a consonant, the Pig Latin version transfers all consonants up to the first vowel to the end of the word, adding "ay" to the end.</p>
+                    </div>
+                    <div class="rules">
+                        <h5>4. </h5>
+                        <p class="des">The letter 'y' should be treated as a consonant if it is the first letter of a word, but treated as a vowel otherwise.</p>
+                    </div>
+                    <div class="rules">
+                        <h5>5. </h5>
+                        <p class="des">If the original word is capitalized, the new Pig Latin version of the word should be capitalized in the first letter.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <!--================ ABOUT ME AREA =================-->
+    <!--
+    <section class="about_area section_gap" id="about-me">
+        <div class="container">
+            <div class="row justify-content-start align-items-center">
+                <div class="col-lg-5">
+                    <div class="about_img">
+                        <img class="" src="img/about/about_img.png" alt="">
+                    </div>
+                </div>
+
+                <div class="offset-lg-1 col-lg-5">
+                    <div class="main_title text-left">
+                        <h2>About me
+                        </h2>
+                        <p>
+                            I am a college freshman at the University of Pennsylvania in the Jerome Fisher Program in Management & Technology, pursuing a BSE in Computer Science and a BS in Economics from The Wharton School.
+                        </p>
+                        <p>
+                            I am passionate about using my expertises in computer programming and engineering to make a positive impact on my community. My interests include neural network/machine learning, full scale mobile app development, and UI/UX design.
+                        </p>
+                        <a class="primary_btn" href="#"><span>Download Resume</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!--================ SKILLS AREA =================-->
+    <!--
+    <section class="skills-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="main_title">
+                        <h2>Skills </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row skill-container">
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill">
+                        <img src="img/skills/web.png" alt="">
+                        <h4>Web Dev</h4>
+                        <p>Website Development from front-end to back-end</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill">
+                        <img src="img/skills/ui_ux.png" alt="">
+                        <h4>UI/UX Design</h4>
+                        <p>Understanding of visual design and user-friendly interface.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill">
+                        <img src="img/skills/mobile.png" alt="">
+                        <h4>Mobile Dev</h4>
+                        <p>Experienced in creating full-scale mobile apps.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill">
+                        <img src="img/skills/machine_learning.png" alt="">
+                        <h4>Machine Learning</h4>
+                        <p>Experienced in developing deep learning neural networks (Tensorflow)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!--================ PROJECTS/PORTFOLIO AREA =================-->
+    <!--
+    <section class="portfolio_area" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_title text-left">
+                        <h2>Projects</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="filters portfolio-filter">
+                <ul>
+                    <li class="active" data-filter="*">all</li>
+                    <li data-filter=".mobile">Mobile</li>
+                    <li data-filter=".web">Web</li>
+                    <li data-filter=".other">Other</li>
+                    <li data-filter=".playground"><a class="project-playground" href="playground.html">playground</a></li>
+                </ul>
+            </div>
+
+            <div class="filters-content">
+                <div class="row portfolio-grid justify-content-center">
+                    <div class="project-link project-section-top-border all mobile">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Mobile App</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/timed_cube.png"></img>
+                            </div>
+                            <div class="project-des-larg project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-20 title_color">Timed Cube</h3>
+                                <p>Gesture motion reflex game with seamless 3D animations, beautiful color scheme, and sound effects.
+                                    <br> <br>• 2018 Congressional App Winner<br>• Presented at U.S Capitol to Congress members<br>• Recognized by Congressman Neal Dunn<br>• Awarded Certificate of Special Congressional Recognition.
+                                </p>
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="#header">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill swift" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Swift</span>
+                                            <span class="precent">82.4%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill cplusplus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">C++</span>
+                                            <span class="precent">12.5%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill ruby" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Ruby</span>
+                                            <span class="precent">5.1%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar swift" role="progressbar" style="width: 82.4%" aria-valuenow="82.4" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar cplusplus" role="progressbar" style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar ruby" role="progressbar" style="width: 5.1%" aria-valuenow="5.1" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all web">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Website</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/robotics_web.png"></img>
+                            </div>
+                            <div class="project-des-small project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-20 title_color">CHS Robotics Website</h3>
+                                <p>Website for the CHS Robotics Club, an internationally ranked VEX team. Features announcements, events, club resources, sponsors, and competition details.</p>
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="https://chilesrobotics.com">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language2" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill html" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">HTML</span>
+                                            <span class="precent">78.8%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill css" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">CSS</span>
+                                            <span class="precent">19.3%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill javascript" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Javascript</span>
+                                            <span class="precent">1.9%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent2" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar html" role="progressbar" style="width: 78.8%" aria-valuenow="78.8" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar css" role="progressbar" style="width: 19.3%" aria-valuenow="19.3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar javascript" role="progressbar" style="width: 1.9%" aria-valuenow="1.9" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all mobile other">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Hardware & Mobile App</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/voltap.png"></img>
+                            </div>
+                            <div class="project-des-larg project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-30 title_color">Voltap</h3>
+                                <p>Voltap is a startup that focuses on creating smart plugs that measure analytics of household appliances to make smart suggestions on how to save.
+                                    <br> <br> Mobile app takes in hardware data to show users real-time energy usage, graphical usage history, appliances automation, leaks and malfunction warnings, and much more.
+                                </p>
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="#header">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language3" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill swift" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Swift</span>
+                                            <span class="precent">64.9%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill cplusplus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">C++</span>
+                                            <span class="precent">35.1%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent3" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar swift" role="progressbar" style="width: 64.9%" aria-valuenow="64.9" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar cplusplus" role="progressbar" style="width: 35.1%" aria-valuenow="35.1" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all mobile">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Mobile App</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/fliz.png"></img>
+                            </div>
+                            <div class="project-des-med project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-30 title_color">Fliz</h3>
+                                <p>An educational platform that helps competitors prepare and study for test-based competitions through the usage of unique features and quizzes. <br> <br>• FBLA Mobile App Development Winner
+                                </p>
+
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="https://github.com/itsandyjiang/Fliz">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language4" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill swift" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Swift</span>
+                                            <span class="precent">99.3%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill ruby" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Ruby</span>
+                                            <span class="precent">0.7%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent4" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar swift" role="progressbar" style="width: 99.3%" aria-valuenow="99.3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar ruby" role="progressbar" style="width: 0.7%" aria-valuenow="0.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all web">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Website</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/chiles_clubs.png"></img>
+                            </div>
+                            <div class="project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-30 title_color">Chiles Clubs Website</h3>
+                                <p>Club directory website with a clean minimalist theme, making resources more accessible for students and easier for students to find clubs that fit their interests. </p>
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="https://chilesclubs.com/">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language5" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill javascript" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Javascript</span>
+                                            <span class="precent">54.8%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill css" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">CSS</span>
+                                            <span class="precent">24.2%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill html" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">HTML</span>
+                                            <span class="precent">21.0%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent5" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar javascript" role="progressbar" style="width: 54.8%" aria-valuenow="54.8" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar css" role="progressbar" style="width: 24.2%" aria-valuenow="24.2" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar html" role="progressbar" style="width: 21.0%" aria-valuenow="21.0" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all mobile other">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Neural Network & Mobile App</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/liver_neural.png"></img>
+                            </div>
+                            <div class="project-des-xlarg project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-30 title_color">Neural Network for Liver Cancer Diagnosis</h3>
+                                <p>Deep learning neural network that takes in 8 common blood biomarkers for liver cancer diagnosis. 88.3% accuracy rate based on over 20,000 data points. Converted Tensorflow to Core ML for IOS compatibility.
+                                    <br> <br>• 3rd in MACO at SSEF Florida<br>• 1st in MACO at Capitol Regional Science Fair<br>• 1st in Medical Innovation at HOSA<br> • The Office of Naval Research - Naval Science Award
+                                </p>
+
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="#header">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language6" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill python" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Python</span>
+                                            <span class="precent">64.7%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill swift" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Swift</span>
+                                            <span class="precent">28.1%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill cplusplus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">C++</span>
+                                            <span class="precent">6.4%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill ruby" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Ruby</span>
+                                            <span class="precent">0.8%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent6" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar python" role="progressbar" style="width: 64.7%" aria-valuenow="64.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar swift" role="progressbar" style="width: 28.1%" aria-valuenow="28.1%" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar cplusplus" role="progressbar" style="width: 6.4%" aria-valuenow="6.4" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar ruby" role="progressbar" style="width: 0.8%" aria-valuenow="0.8" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-link project-section-top-border all web">
+                        <div class="row h-120">
+                            <div class="project-type col-lg-1">
+                                <p class="project-type-word">Website</p>
+                            </div>
+                            <div class="project col-lg-7">
+                                <img class="project-background" src="img/project/research_web.png"></img>
+                            </div>
+                            <div class="project-des-small project-des col-lg-4 mt-sm-20 left-align-p">
+                                <h3 class="project-title mb-30 title_color">CHS Scientific Research Society Website</h3>
+                                <p>Showcase guest speakers and upcoming events/presentations. Connect students with research professors. Learn about cutting edge research.</p>
+                                <div class="row project-buttons">
+                                    <div class="col-md-6 col-6 button-1">
+                                        <a class="project-button-learnmore project-button tr-bg" href="#header">Learn More <i class="button-logo-mr fa fa-external-link-square"></i></a>
+                                    </div>
+                                </div>
+                                <div id="prog-language7" class="prog-language">
+                                    <ul class="lang-w-percent-ul">
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill css" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">CSS</span>
+                                            <span class="precent">46.2%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill html" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">HTML</span>
+                                            <span class="precent">28.8%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill javascript" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">Javascript</span>
+                                            <span class="precent">24.3%</span>
+                                        </li>
+                                        <li class="lang-w-percent-li">
+                                            <svg class="dot-fill php" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                            <span class="lang">PHP</span>
+                                            <span class="precent">0.7%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div id="language-percent7" class="language-percent">
+                                    <div class="progress">
+                                        <div class="progress-bar css" role="progressbar" style="width: 46.2%" aria-valuenow="46.2" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar html" role="progressbar" style="width: 28.8%" aria-valuenow="28.8" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar javascript" role="progressbar" style="width: 24.3%" aria-valuenow="24.3" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar php" role="progressbar" style="width: 0.7%" aria-valuenow="0.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!--================ NEWS/EMAIL UPDATE AREA =================-->
+    <!--
+    <section class="newsletter_area">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
+                    <div class="subscription_box text-center">
+                        <h2 class="text-uppercase text-white">Get Updates</h2>
+                        <p class="text-white">
+                            Get occasional updates on what I'm working on!
+                        </p>
+                        <div class="subscribe-form" id="mc_embed_signup">
+                            <form target="_blank" novalidate="true" action="https://andyjiang.us10.list-manage.com/subscribe/post?u=7f0e484839eb0bad4baf70d32&amp;id=6133060790" method="get" class="subscription relative">
+                                <input name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_7f0e484839eb0bad4baf70d32_6133060790" tabindex="-1" value="" type="text">
+                                </div>
+                                <button class="primary-btn hover d-inline">Get Started</button>
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+
+    <!--================ FOOTER AREA =================-->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="footer_top flex-column">
+                        <div class="footer_logo">
+                            <h4>Social</h4>
+                        </div>
+                        <div class="footer_social">
+                            <a href="https://www.linkedin.com/in/andy-jiang-0b8b6a176/"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://github.com/itsandyjiang"><i class="fa fa-github"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100010675898271"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/_andyjiang/?hl=en"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+                    Made by Andy Jiang - &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="vendors/isotope/isotope-min.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="js/gmaps.min.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="translate.js"></script>
+
+</body>
+
+
+
+</html>
