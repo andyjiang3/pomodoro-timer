@@ -482,9 +482,9 @@ button:focus {
 /* HOME BANNER */
 
 .home_banner_area {
-    padding-top: 50px;
+    padding-top: 56px;
     z-index: 1;
-    background-color: #FA7878;
+    background-color: #36A2B0;
     height: 100vh;
 }
 
@@ -668,6 +668,30 @@ button:focus {
 
 
 /* HOME BANNER */
+
+
+/* TIMER */
+
+.timer_area {
+    width: 100%;
+    height: calc(100vh - 76px);
+    display: flex;
+}
+
+.timer_area_inner {
+    margin: auto;
+}
+
+.timer_label {
+    color: #ffffff;
+    font-size: 200px;
+    font-family: "Rubik", sans-serif;
+}
+
+.timer_units_label {
+    color: #ffffff;
+    font-size: 64px;
+}
 
 
 /* ROTATING TEXT */
