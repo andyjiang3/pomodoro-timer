@@ -93,7 +93,7 @@ function pigWord(word) {
         pigLatin = wordTilVowel + cost + "ay";
     }
 
-    if (word.charAt(0) != word.charAt(0).toLowerCase) {
+    if (word.charAt(0) != word.charAt(0).toLowerCase()) { //is uppercase
         pigLatin = pigLatin.substring(0, 1).toUpperCase() + pigLatin.substring(1).toLowerCase();
     }
 
