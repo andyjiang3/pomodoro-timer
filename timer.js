@@ -10,8 +10,17 @@ function startPauseTimer(duration) {
 
         timer.addEventListener('secondsUpdated', function(e) {
             $('#minutes').text(timer.getTimeValues().minutes);
-            $('#seconds').text(timer.getTimeValues().seconds);
+            var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
+            $('#seconds').text(seconds);
         });
+
+        timer.addEventListener('reset', function(e) {
+            $('#minutes').text(timer.getTimeValues().minutes);
+            var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
+            $('#seconds').text(seconds);
+        });
+
+
         started = true;
     } else {
         if (timer.isRunning() == true) {
@@ -23,6 +32,11 @@ function startPauseTimer(duration) {
         }
     }
 
+}
+
+
+function resetTimer() {
+    timer.reset();
 }
 
 function startTimer2(duration) {
