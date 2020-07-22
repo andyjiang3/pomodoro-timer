@@ -1,4 +1,5 @@
 var started = false;
+var running = false;
 var timer = new easytimer.Timer();
 
 function startPauseTimer(duration) {
@@ -36,7 +37,20 @@ function startPauseTimer(duration) {
 
 
 function resetTimer() {
+    if (timer.isRunning() == true) {
+        running = true;
+    } else {
+        running = false;
+    }
     timer.reset();
+
+    if (running) {
+        timer.start();
+        $("#pausestart").attr("src", "img/nav/pause2.png");
+    } else {
+        timer.pause();
+        $("#pausestart").attr("src", "img/nav/start2.png");
+    }
 }
 
 function startTimer2(duration) {
