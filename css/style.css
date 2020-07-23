@@ -676,11 +676,11 @@ button:focus {
     width: 100%;
     height: calc(100vh - 76px);
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.timer_area_inner {
-    margin: auto;
-}
+.timer_area_inner {}
 
 .timer_label {
     color: #ffffff;
@@ -689,21 +689,29 @@ button:focus {
     text-shadow: 0px 6px 4px rgb(0, 0, 0, 0.25);
 }
 
+.timer_numbers {
+    min-width: 265px;
+    display: inline-block;
+    float: center;
+}
+
 .timer_units_label {
     color: #ffffff;
     font-size: 64px;
 }
 
+
+/*297E89*/
+
 .side_menu {
     height: calc(100vh - 56px);
     width: 0;
     position: absolute;
-    background-color: #297E89;
+    background-color: #ffffff;
     z-index: 1;
     top: 56px;
     left: 0;
     overflow-x: hidden;
-    transition: 0.5s;
     padding: 30px 0 30px 0;
     box-shadow: 4px 0 4px -4px rgba(0, 0, 0, 0.25);
 }
