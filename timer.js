@@ -10,17 +10,29 @@ function startPauseTimer() {
 
         timer.start({ countdown: true, startValues: { minutes: duration } });
         $("#pausestart").attr("src", "img/nav/pause.svg");
+        $('#timer-progress').width("100%");
+
 
         timer.addEventListener('secondsUpdated', function(e) {
-            $('#minutes').text(timer.getTimeValues().minutes);
+            var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+            $('#minutes').text(minutes);
             var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
             $('#seconds').text(seconds);
+
+            var totalTime = (timer.getTimeValues().minutes * 60) + timer.getTimeValues().seconds;
+            var width = totalTime / (duration * 60);
+            $('#timer-progress').width(width * 100 + "%");
+
+
+
         });
 
         timer.addEventListener('reset', function(e) {
-            $('#minutes').text(timer.getTimeValues().minutes);
+            var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+            $('#minutes').text(minutes);
             var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
             $('#seconds').text(seconds);
+            $('#timer-progress').width("100%");
         });
 
 
@@ -64,17 +76,26 @@ document.addEventListener('keydown', function(event) {
 
             timer.start({ countdown: true, startValues: { minutes: duration } });
             $("#pausestart").attr("src", "img/nav/pause.svg");
+            $('#timer-progress').width("100%");
 
             timer.addEventListener('secondsUpdated', function(e) {
-                $('#minutes').text(timer.getTimeValues().minutes);
+                var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+                $('#minutes').text(minutes);
                 var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
                 $('#seconds').text(seconds);
+
+                var totalTime = (timer.getTimeValues().minutes * 60) + timer.getTimeValues().seconds;
+                var width = totalTime / (duration * 60);
+                $('#timer-progress').width(width * 100 + "%");
+
             });
 
             timer.addEventListener('reset', function(e) {
-                $('#minutes').text(timer.getTimeValues().minutes);
+                var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+                $('#minutes').text(minutes);
                 var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
                 $('#seconds').text(seconds);
+                $('#timer-progress').width("100%");
             });
 
             started = true;
