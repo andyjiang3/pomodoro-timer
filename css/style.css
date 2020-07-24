@@ -318,6 +318,7 @@ button:focus {
     color: #ffffff;
     padding: 0px;
     display: inline-block;
+    font-size: 17px;
 }
 
 .header_area .navbar .nav .nav-item .nav-link:after {
@@ -326,7 +327,7 @@ button:focus {
 
 .header_area .navbar .nav .nav-item:hover .nav-link,
 .header_area .navbar .nav .nav-item.active .nav-link {
-    color: #79CE55;
+    color: #ffffff;
 }
 
 .header_area .navbar .nav .nav-item.submenu {
@@ -671,6 +672,20 @@ button:focus {
 
 
 /* TIMER */
+
+.section-inactive {
+    font-size: 14px!important;
+    color: #e0e0e0!important;
+}
+
+#focus,
+#break {
+    transition: 0.5s;
+}
+
+#focus+#break {
+    margin-left: 13px;
+}
 
 .timer_area {
     width: 100%;
