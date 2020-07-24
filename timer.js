@@ -9,7 +9,7 @@ function startPauseTimer() {
 
 
         timer.start({ countdown: true, startValues: { minutes: duration } });
-        $("#pausestart").attr("src", "img/nav/pause.svg");
+        $("#pausestart").attr("src", "img/nav/pause2.svg");
         $('#timer-progress').width("100%");
 
 
@@ -40,10 +40,10 @@ function startPauseTimer() {
     } else {
         if (timer.isRunning() == true) {
             timer.pause();
-            $("#pausestart").attr("src", "img/nav/start.svg");
+            $("#pausestart").attr("src", "img/nav/start2.svg");
         } else {
             timer.start();
-            $("#pausestart").attr("src", "img/nav/pause.svg");
+            $("#pausestart").attr("src", "img/nav/pause2.svg");
         }
     }
 
@@ -59,10 +59,10 @@ function resetTimer() {
 
     if (running) {
         timer.start();
-        $("#pausestart").attr("src", "img/nav/pause.svg");
+        $("#pausestart").attr("src", "img/nav/pause2.svg");
     } else {
         timer.pause();
-        $("#pausestart").attr("src", "img/nav/start.svg");
+        $("#pausestart").attr("src", "img/nav/start2.svg");
     }
 }
 
@@ -75,7 +75,7 @@ document.addEventListener('keydown', function(event) {
         if (!started) {
 
             timer.start({ countdown: true, startValues: { minutes: duration } });
-            $("#pausestart").attr("src", "img/nav/pause.svg");
+            $("#pausestart").attr("src", "img/nav/pause2.svg");
             $('#timer-progress').width("100%");
 
             timer.addEventListener('secondsUpdated', function(e) {
@@ -103,10 +103,10 @@ document.addEventListener('keydown', function(event) {
         } else {
             if (timer.isRunning() == true) {
                 timer.pause();
-                $("#pausestart").attr("src", "img/nav/start.svg");
+                $("#pausestart").attr("src", "img/nav/start2.svg");
             } else {
                 timer.start();
-                $("#pausestart").attr("src", "img/nav/pause.svg");
+                $("#pausestart").attr("src", "img/nav/pause2.svg");
             }
         }
     }
