@@ -674,7 +674,7 @@ button:focus {
 
 .timer_area {
     width: 100%;
-    height: calc(100vh - 76px);
+    height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -706,7 +706,7 @@ button:focus {
 .home_banner_area .timer_outer {
     width: 100%;
     overflow: hidden;
-    height: 20px;
+    height: 24px;
 }
 
 .timer_outer .progress {
