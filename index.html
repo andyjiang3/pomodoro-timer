@@ -59,7 +59,7 @@
                     <ul class="nav navbar-nav menu_nav justify-content-start">
                         <li class="nav-item">
                             <span class="nav-link" onclick="openCloseMenu()"><img class="" src="img/nav/settings3.svg" alt=""></span>
-                            <span class="nav-link"><img class="" src="img/nav/task3.svg" alt=""></span>
+                            <span class="nav-link" onclick="openCloseTask()"><img class="" src="img/nav/task3.svg" alt=""></span>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-center">
@@ -81,6 +81,33 @@
     <section class="home_banner_area">
         <div class="banner_inner">
             <div id="menuSide" class="side_menu">
+                <div class="container">
+                    <div class="settings row">
+                        <div class="col-lg-6">
+                            <div class="settings_timer">
+                                <div class="settings_title">
+                                    <h4>TIMER</h4>
+                                    <div>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                                <div class="options">
+                                    <p>Test</p>
+                                </div>
+                            </div>
+                            <div class="settings_break"></div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="settings_sessions">
+                                <h4>SESSIONS</h4>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--
                 <div class="menu_section">
                     <h4 class="menu_title">Timer</h4>
                     <p class="menu_subtitle">Time:</p>
@@ -92,6 +119,22 @@
                     <p class="menu_subtitle">Disable:</p>
                     <p class="menu_subtitle">Max:</p>
                 </div>
+                -->
+            </div>
+            <div id="taskMenu" class="side_menu">
+                <div class="container">
+                    <div class="task row">
+                        <div class="col-lg-8">
+                            <h4>TO-DO LIST</h4>
+                            <textarea></textarea>
+                        </div>
+                        <div class="col-lg-4">
+
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
             <div class="container timer_area">
                 <div class="row timer_area_inner">
@@ -723,6 +766,7 @@
 
     <script>
         var opened = false;
+        var openedTask = false;
 
         function openCloseMenu() {
             if (opened) {
@@ -731,6 +775,17 @@
             } else {
                 document.getElementById("menuSide").style.width = "100%";
                 opened = true;
+            }
+
+        }
+
+        function openCloseTask() {
+            if (openedTask) {
+                document.getElementById("taskMenu").style.width = "0px";
+                openedTask = false;
+            } else {
+                document.getElementById("taskMenu").style.width = "100%";
+                openedTask = true;
             }
 
         }

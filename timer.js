@@ -104,9 +104,11 @@ timer.addEventListener('targetAchieved', function(e) {
 
     sectionIndex++;
 
-    if (sectionIndex > 3) {
-        sectionIndex = 0;
+    if (sectionIndex > 2) {
         session++;
+    } else if (sectionIndex > 3) {
+        session++;
+        sectionIndex = 0;
     }
 
     if (sectionIndex % 2 == 0) { //even = focus
@@ -132,30 +134,3 @@ timer.addEventListener('targetAchieved', function(e) {
     started = false;
 
 });
-
-
-
-/*
-function startTimer2(duration) {
-    var timer = duration,
-        minutes, seconds;
-
-    setInterval(function() {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        document.getElementById("minutes").innerHTML = minutes;
-        document.getElementById("seconds").innerHTML = seconds;
-        console.log(minutes + ":" + seconds);
-        if (--timer < 0) {
-            document.getElementById("minutes").innerHTML = "00";
-            document.getElementById("seconds").innerHTML = "00";
-        }
-
-    }, 1000);
-
-}
-*/
