@@ -828,6 +828,7 @@ button:focus {
     font-size: 16px;
     resize: none;
     outline: none;
+    overflow: none;
 }
 
 

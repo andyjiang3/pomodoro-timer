@@ -50,21 +50,25 @@ document.addEventListener('keydown', function(event) {
     }
 
     if (event.keyCode == 32) {
-        if (!started) {
+        if (document.activeElement != document.getElementById('task-list')) {
+            event.preventDefault();
 
-            timerSetup();
+            if (!started) {
 
-        } else {
-            if (timer.isRunning() == true) {
-                timer.pause();
-                $("#pausestart").attr("src", "img/nav/start2.svg");
+                timerSetup();
+
             } else {
-                timer.start();
-                $("#pausestart").attr("src", "img/nav/pause2.svg");
+                if (timer.isRunning() == true) {
+                    timer.pause();
+                    $("#pausestart").attr("src", "img/nav/start2.svg");
+                } else {
+                    timer.start();
+                    $("#pausestart").attr("src", "img/nav/pause2.svg");
+                }
             }
         }
     }
-    event.preventDefault();
+
 });
 
 function timerSetup() {
