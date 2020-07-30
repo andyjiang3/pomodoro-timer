@@ -31,16 +31,18 @@ function startPauseTimer() {
 }
 
 function resetTimer() {
-    if (timer.isRunning() == true) {
-        timer.reset();
+    if (started) {
+        if (timer.isRunning() == true) {
+            timer.reset();
 
-        timer.start();
-        $("#pausestart").attr("src", "img/nav/pause2.svg");
-    } else {
-        timer.reset();
+            timer.start();
+            $("#pausestart").attr("src", "img/nav/pause2.svg");
+        } else {
+            timer.reset();
 
-        timer.pause();
-        $("#pausestart").attr("src", "img/nav/start2.svg");
+            timer.pause();
+            $("#pausestart").attr("src", "img/nav/start2.svg");
+        }
     }
 }
 
