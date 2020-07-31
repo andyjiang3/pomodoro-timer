@@ -671,6 +671,22 @@ button:focus {
 /* HOME BANNER */
 
 
+/* NAV - TIMER CONTROL */
+
+.timer_control_background {
+    width: 150px;
+    height: 35px;
+    background-color: rgba(61, 181, 198, 0.5);
+    padding: 0px 10px 0px 10px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.timer_control_background .nav_icon+.nav_icon {
+    padding-left: 15px;
+}
+
+
 /* TIMER */
 
 .section-inactive {

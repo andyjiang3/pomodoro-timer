@@ -65,12 +65,19 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-center">
+                        <!--
                         <li class="nav-item"><span id="focus" class="nav-link">Focus</span><span id="break" class="nav-link section-inactive">Break</span></li>
+                            -->
+                        <div class="timer_control_background row justify-content-lg-center">
+                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startx23.svg" alt=""></span>
+                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartx23.svg" alt=""></span>
+
+                        </div>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-end">
                         <li class="nav-item">
                             <span class="nav-link" onclick="openCloseTask()"><img class="" src="img/nav/task3.svg" alt=""></span>
-                            <span class="nav-link" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profile.svg" alt=""></span>
+                            <span class="nav-link" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profilex23.svg" alt=""></span>
                         </li>
 
                     </ul>
@@ -155,10 +162,6 @@
                     <div class="col-lg-12">
                         <div class="timer_area_inner">
                             <div class="timer_label"><span id="minutes" class="timer_numbers">02</span><span class="timer_units_label">m</span><span id="seconds" class="timer_numbers">00</span><span class="timer_units_label">s</span></div>
-                        </div>
-                        <div class="timer_controls row justify-content-center">
-                            <span class="nav-link" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/start2.svg" alt=""></span>
-                            <span class="nav-link" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restart2.svg" alt=""></span>
                         </div>
                     </div>
                 </div>
