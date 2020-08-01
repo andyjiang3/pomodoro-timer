@@ -6,7 +6,7 @@
 
 /* FONT */
 
-@import url("https://fonts.googleapis.com/css?family=Roboto:400,500|Rubik:500,700");
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap');
 
 /* Medium Layout: 1280px, Tablet Layout: 768px, Mobile Layout: 320px, Wide Mobile Layout: 480px */
 
@@ -701,7 +701,7 @@ button:focus {
 
 .timer_control_background {
     width: 150px;
-    height: 38px;
+    height: 32px;
     background-color: rgba(61, 181, 198, 0.5);
     padding: 0px 10px 0px 10px;
     align-items: center;
@@ -746,6 +746,7 @@ button:focus {
     font-size: 200px;
     font-family: "Rubik", sans-serif;
     text-shadow: 0px 6px 4px rgb(0, 0, 0, 0.25);
+    font-weight: 400!important;
 }
 
 .timer_numbers {
@@ -897,6 +898,9 @@ button:focus {
     float: none;
 }
 
+
+/* TASK - TO DO */
+
 .task {
     width: 100%;
     height: calc(100vh - 56px);
@@ -924,6 +928,151 @@ button:focus {
     outline: none;
     overflow: none;
     color: black;
+}
+
+.add-to-do {
+    justify-content: center;
+    display: flex;
+    height: 45px;
+    margin-bottom: 12px;
+}
+
+.add-to-do input {
+    width: 800px;
+    height: 45px;
+    font-size: 16px;
+    border: 1px solid rgba(199, 199, 199, 0.8);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right: none;
+    padding: 8px 15px 8px 15px;
+    outline: none;
+}
+
+.add-to-do button {
+    width: 50px;
+    height: 45px;
+    background-color: #36A2B0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    line-height: 50%;
+}
+
+.task-options {
+    padding: 0px 20px 0px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.task-options .task-option {
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+}
+
+.task-options h3 {
+    font-size: 17px;
+    color: #297E89;
+    font-weight: 500!important;
+    margin-bottom: 0px;
+    display: inline-block;
+}
+
+.task-options input {
+    width: 80px;
+    height: 23px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #EDEDED;
+    border: none;
+    margin-left: 15px;
+    padding: 0px 8px 0px 8px;
+    text-align: center;
+    outline: none;
+}
+
+.to-do-title {
+    margin-top: 45px;
+    margin-bottom: 15px;
+    margin-left: 115px;
+}
+
+.to-do-content {
+    height: 350px;
+    max-height: 350px;
+    background-color: #FFF;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.to-do-content::-webkit-scrollbar {
+    display: none;
+}
+
+.to-do-content ul {
+    padding: 0;
+    margin: 0;
+}
+
+.item {
+    width: 860px;
+    height: 45px;
+    min-height: 45px;
+    position: relative;
+    border-bottom: 1px solid #c4c4c4;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item i.co {
+    position: absolute;
+    font-size: 25px;
+    padding-left: 5px;
+    left: 0px;
+    top: 10px;
+}
+
+.item i.co:hover {
+    cursor: pointer;
+}
+
+.fa-check-circle {
+    color: #6eb200;
+}
+
+.item p.text {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    left: 35px;
+    top: 5px;
+    max-width: 800px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 400!important;
+    line-height: 35px;
+    color: #000000;
+}
+
+.lineThrough {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.item i.de {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+}
+
+.item i.de:hover {
+    color: #af0000;
+    cursor: pointer;
 }
 
 

@@ -21,10 +21,10 @@ function startPauseTimer() {
     } else {
         if (timer.isRunning() == true) {
             timer.pause();
-            $("#pausestart").attr("src", "img/nav/startNew.svg");
+            $("#pausestart").attr("src", "img/nav/startNew2.svg");
         } else {
             timer.start();
-            $("#pausestart").attr("src", "img/nav/pauseNew.svg");
+            $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
         }
     }
 
@@ -36,12 +36,12 @@ function resetTimer() {
             timer.reset();
 
             timer.start();
-            $("#pausestart").attr("src", "img/nav/pauseNew.svg");
+            $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
         } else {
             timer.reset();
 
             timer.pause();
-            $("#pausestart").attr("src", "img/nav/startNew.svg");
+            $("#pausestart").attr("src", "img/nav/startNew2.svg");
         }
     }
 }
@@ -52,7 +52,7 @@ document.addEventListener('keydown', function(event) {
     }
 
     if (event.keyCode == 32) {
-        if (document.activeElement != document.getElementById('task-list')) {
+        if (document.activeElement != document.getElementById('to-do-input')) {
             event.preventDefault();
 
             if (!started) {
@@ -62,10 +62,10 @@ document.addEventListener('keydown', function(event) {
             } else {
                 if (timer.isRunning() == true) {
                     timer.pause();
-                    $("#pausestart").attr("src", "img/nav/startNew.svg");
+                    $("#pausestart").attr("src", "img/nav/startNew2.svg");
                 } else {
                     timer.start();
-                    $("#pausestart").attr("src", "img/nav/pauseNew.svg");
+                    $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
                 }
             }
         }
@@ -75,7 +75,7 @@ document.addEventListener('keydown', function(event) {
 
 function timerSetup() {
     timer.start({ countdown: true, startValues: { minutes: duration }, target: { minutes: 0, seconds: 0 } });
-    $("#pausestart").attr("src", "img/nav/pauseNew.svg");
+    $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
 
     //PROGRESS BAR
     $('#timer-progress').width("100%");
@@ -133,7 +133,7 @@ timer.addEventListener('targetAchieved', function(e) {
     var minutes = duration < 10 ? "0" + duration : duration;
     $('#minutes').text(minutes);
 
-    $("#pausestart").attr("src", "img/nav/startNew.svg");
+    $("#pausestart").attr("src", "img/nav/startNew2.svg");
     //PROGRESS BAR
     $('#timer-progress').width("100%");
 

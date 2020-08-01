@@ -73,17 +73,17 @@
                         <li class="nav-item"><span id="focus" class="nav-link">Focus</span><span id="break" class="nav-link section-inactive">Break</span></li>
                             -->
                         <div class="timer_control_background row justify-content-center">
-                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartNew.svg" alt=""></span>
-                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startNew.svg" alt=""></span>
-                            <span class="nav_icon" onclick=""><img id="" class="" src="img/nav/skipNew.svg" alt=""></span>
+                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartNew2.svg" alt=""></span>
+                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startNew2.svg" alt=""></span>
+                            <span class="nav_icon" onclick=""><img id="" class="" src="img/nav/skipNew2.svg" alt=""></span>
 
                         </div>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-end">
                         <li class="nav-item nav_left_background row">
-                            <span class="nav_icon" onclick="openCloseTask()"><img class="" src="img/nav/taskNew.svg" alt=""></span>
+                            <span class="nav_icon" onclick="openCloseTask()"><img class="" src="img/nav/taskNew2.svg" alt=""></span>
 
-                            <span class="nav_icon" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profileNew.svg" alt=""></span>
+                            <span class="nav_icon" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profileNew2.svg" alt=""></span>
 
                         </li>
 
@@ -151,14 +151,42 @@
             </div>
             <div id="taskMenu" class="side_menu">
                 <div class="container">
-                    <div class="task row">
-                        <div class="col-lg-8">
-                            <h4>TO-DO LIST</h4>
-                            <div class="textarea" id="task-list" contenteditable></div>
-                        </div>
-                        <div class="col-lg-4">
+                    <div class="task">
+                        <div class="col-lg-12">
+                            <div class="add-to-do">
+                                <input type="text" id="to-do-input" placeholder="Write your task here...">
+                                <button class="fa fa-plus fa-lg"></button>
 
+                            </div>
+                            <div class="row task-options">
+                                <div class="col-sm-4 task-option">
+                                    <h3>SESSIONS</h3>
+                                    <input type="number" id="input">
+                                </div>
+                                <div class="col-sm-4 task-option">
+                                    <h3>FOCUS</h3>
+                                    <input type="text" id="input">
+                                </div>
+                                <div class="col-sm-4 task-option">
+                                    <h3>BREAK</h3>
+                                    <input type="text" id="input">
+                                </div>
+                            </div>
+
+                            <h4 class="to-do-title">TO-DO LIST</h4>
+                            <div class="to-do-content">
+                                <ul id="to-do-list">
+                                    <li class="item">
+                                        <i class="fa fa-circle-thin co" job="complete" id="0"></i>
+                                        <p class="text">Do Task - Default</p>
+                                        <i class="fa fa-times-circle fa-lg de" job="delete" id="0"></i>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
+
+
                     </div>
 
                 </div>
