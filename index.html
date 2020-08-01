@@ -59,6 +59,10 @@
                     <ul class="nav navbar-nav menu_nav justify-content-start">
                         <li class="nav-item">
                             <!--
+                            <span class="" onclick=""><img id="" src="img/nav/logo.svg" alt=""></span>
+
+                            
+
                             <span class="nav-link" onclick="openCloseMenu()"><img class="" src="img/nav/settings3.svg" alt=""></span>                     
                             <span class="nav-link" onclick="openCloseTask()"><img class="" src="img/nav/task3.svg" alt=""></span>
                         -->
@@ -68,16 +72,19 @@
                         <!--
                         <li class="nav-item"><span id="focus" class="nav-link">Focus</span><span id="break" class="nav-link section-inactive">Break</span></li>
                             -->
-                        <div class="timer_control_background row justify-content-lg-center">
-                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startx23.svg" alt=""></span>
-                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartx23.svg" alt=""></span>
+                        <div class="timer_control_background row justify-content-center">
+                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartNew.svg" alt=""></span>
+                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startNew.svg" alt=""></span>
+                            <span class="nav_icon" onclick=""><img id="" class="" src="img/nav/skipNew.svg" alt=""></span>
 
                         </div>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-end">
-                        <li class="nav-item">
-                            <span class="nav-link" onclick="openCloseTask()"><img class="" src="img/nav/task3.svg" alt=""></span>
-                            <span class="nav-link" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profilex23.svg" alt=""></span>
+                        <li class="nav-item nav_left_background row">
+                            <span class="nav_icon" onclick="openCloseTask()"><img class="" src="img/nav/taskNew.svg" alt=""></span>
+
+                            <span class="nav_icon" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profileNew.svg" alt=""></span>
+
                         </li>
 
                     </ul>
@@ -815,6 +822,8 @@
 
         }
 
+
+
         function profileClicked() {
 
             if (profileOpened) {
@@ -827,6 +836,14 @@
                 profileOpened = true;
             }
         }
+
+        $('.home_banner_area').click(function(e) {
+            if (profileOpened) {
+                document.getElementById("profile_sub").style.opacity = "0";
+                document.getElementById("profile_sub").style.visibility = "hidden";
+                profileOpened = false;
+            }
+        });
     </script>
 
 </body>

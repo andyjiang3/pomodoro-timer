@@ -21,10 +21,10 @@ function startPauseTimer() {
     } else {
         if (timer.isRunning() == true) {
             timer.pause();
-            $("#pausestart").attr("src", "img/nav/start2.svg");
+            $("#pausestart").attr("src", "img/nav/startNew.svg");
         } else {
             timer.start();
-            $("#pausestart").attr("src", "img/nav/pause2.svg");
+            $("#pausestart").attr("src", "img/nav/pauseNew.svg");
         }
     }
 
@@ -36,12 +36,12 @@ function resetTimer() {
             timer.reset();
 
             timer.start();
-            $("#pausestart").attr("src", "img/nav/pause2.svg");
+            $("#pausestart").attr("src", "img/nav/pauseNew.svg");
         } else {
             timer.reset();
 
             timer.pause();
-            $("#pausestart").attr("src", "img/nav/start2.svg");
+            $("#pausestart").attr("src", "img/nav/startNew.svg");
         }
     }
 }
@@ -62,10 +62,10 @@ document.addEventListener('keydown', function(event) {
             } else {
                 if (timer.isRunning() == true) {
                     timer.pause();
-                    $("#pausestart").attr("src", "img/nav/start2.svg");
+                    $("#pausestart").attr("src", "img/nav/startNew.svg");
                 } else {
                     timer.start();
-                    $("#pausestart").attr("src", "img/nav/pause2.svg");
+                    $("#pausestart").attr("src", "img/nav/pauseNew.svg");
                 }
             }
         }
@@ -75,7 +75,7 @@ document.addEventListener('keydown', function(event) {
 
 function timerSetup() {
     timer.start({ countdown: true, startValues: { minutes: duration }, target: { minutes: 0, seconds: 0 } });
-    $("#pausestart").attr("src", "img/nav/pause2.svg");
+    $("#pausestart").attr("src", "img/nav/pauseNew.svg");
 
     //PROGRESS BAR
     $('#timer-progress').width("100%");
@@ -133,7 +133,7 @@ timer.addEventListener('targetAchieved', function(e) {
     var minutes = duration < 10 ? "0" + duration : duration;
     $('#minutes').text(minutes);
 
-    $("#pausestart").attr("src", "img/nav/start2.svg");
+    $("#pausestart").attr("src", "img/nav/startNew.svg");
     //PROGRESS BAR
     $('#timer-progress').width("100%");
 

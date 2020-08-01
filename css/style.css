@@ -671,11 +671,37 @@ button:focus {
 /* HOME BANNER */
 
 
+/* NAV */
+
+.nav-logo {
+    max-height: 30px;
+}
+
+
+/* NAV - LEFT */
+
+.nav_left_background {
+    align-items: center;
+}
+
+.nav_left_background .nav_icon+.nav_icon {
+    padding-left: 8px;
+}
+
+.profile_greet {
+    margin-bottom: 0px;
+    padding-left: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: medium;
+}
+
+
 /* NAV - TIMER CONTROL */
 
 .timer_control_background {
     width: 150px;
-    height: 35px;
+    height: 38px;
     background-color: rgba(61, 181, 198, 0.5);
     padding: 0px 10px 0px 10px;
     align-items: center;
