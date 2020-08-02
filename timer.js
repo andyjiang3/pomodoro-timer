@@ -5,10 +5,10 @@ var session = 0;
 var sections = ["Focus", "Break", "Focus", "Break"];
 //                 0        1        2         3        (even = focus, odd = break)
 
-var duration = 2;
+var duration = 25;
 
-var focusDuration = 2;
-var breakDuration = 1;
+var focusDuration = 25;
+var breakDuration = 5;
 
 var timer = new easytimer.Timer();
 

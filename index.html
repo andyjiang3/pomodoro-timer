@@ -155,21 +155,30 @@
                         <div class="col-lg-12">
                             <div class="add-to-do">
                                 <input type="text" id="to-do-input" placeholder="Write your task here...">
-                                <button class="fa fa-plus fa-lg"></button>
+                                <button class="fa fa-plus fa-lg" id="to-do-add-button"></button>
 
                             </div>
                             <div class="row task-options">
                                 <div class="col-sm-4 task-option">
                                     <h3>SESSIONS</h3>
-                                    <input type="number" id="input">
+                                    <input class="number-input" type="number" value="1" min="1" max="5" id="sessions-input">
                                 </div>
                                 <div class="col-sm-4 task-option">
                                     <h3>FOCUS</h3>
-                                    <input type="text" id="input">
+                                    <div class="time-input-wrapper">
+                                        <input class="time-input" type="text" id="focus-input-mins" value="25">
+                                        <div class="time-input-seperator">:</div>
+                                        <input class="time-input" type="text" id="focus-input-secs" value="00">
+                                    </div>
+
                                 </div>
                                 <div class="col-sm-4 task-option">
                                     <h3>BREAK</h3>
-                                    <input type="text" id="input">
+                                    <div class="time-input-wrapper">
+                                        <input class="time-input" type="text" id="break-input-mins" value="05">
+                                        <div class="time-input-seperator">:</div>
+                                        <input class="time-input" type="text" id="break-input-secs" value="00">
+                                    </div>
                                 </div>
                             </div>
 
@@ -178,7 +187,7 @@
                                 <ul id="to-do-list">
                                     <li class="item">
                                         <i class="fa fa-circle-thin co" job="complete" id="0"></i>
-                                        <p class="text">Do Task - Default</p>
+                                        <p class="text">Do Task - Default<span class="timer-info">| 2 sets | 25m focus | 5m break</span></p>
                                         <i class="fa fa-times-circle fa-lg de" job="delete" id="0"></i>
                                     </li>
 
@@ -196,7 +205,7 @@
                 <div class="row timer_both">
                     <div class="col-lg-12">
                         <div class="timer_area_inner">
-                            <div class="timer_label"><span id="minutes" class="timer_numbers">02</span><span class="timer_units_label">m</span><span id="seconds" class="timer_numbers">00</span><span class="timer_units_label">s</span></div>
+                            <div class="timer_label"><span id="minutes" class="timer_numbers">25</span><span class="timer_units_label">m</span><span id="seconds" class="timer_numbers">00</span><span class="timer_units_label">s</span></div>
                         </div>
                     </div>
                 </div>

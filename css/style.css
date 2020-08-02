@@ -899,7 +899,7 @@ button:focus {
 }
 
 
-/* TASK - TO DO */
+/* TASK - ADD */
 
 .task {
     width: 100%;
@@ -961,6 +961,10 @@ button:focus {
     line-height: 50%;
 }
 
+.add-to-do button:hover {
+    background-color: #297E89;
+}
+
 .task-options {
     padding: 0px 20px 0px 20px;
     display: flex;
@@ -981,7 +985,7 @@ button:focus {
     display: inline-block;
 }
 
-.task-options input {
+.task-options .number-input {
     width: 80px;
     height: 23px;
     font-size: 14px;
@@ -992,7 +996,45 @@ button:focus {
     padding: 0px 8px 0px 8px;
     text-align: center;
     outline: none;
+    line-height: 25px;
 }
+
+.task-options .time-input-wrapper {
+    width: 90px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: #EDEDED;
+    border: none;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.task-options .time-input {
+    width: 20px;
+    font-size: 14px;
+    text-align: center;
+    height: 23px;
+    line-height: 25px;
+    border: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    z-index: 1;
+    background-color: #EDEDED;
+    outline: none;
+}
+
+.task-options .time-input-seperator {
+    text-align: center;
+    width: 5px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+
+/* TASK - CONTENT */
 
 .to-do-title {
     margin-top: 45px;
@@ -1073,6 +1115,13 @@ button:focus {
 .item i.de:hover {
     color: #af0000;
     cursor: pointer;
+}
+
+.to-do-content .timer-info {
+    color: #A7A7A7;
+    font-weight: 300!important;
+    font-size: 15px;
+    margin-left: 8px
 }
 
 
