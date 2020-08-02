@@ -712,6 +712,48 @@ button:focus {
     padding-left: 15px;
 }
 
+.profile_background {
+    width: 105px;
+    height: 32px;
+    background-color: rgba(61, 181, 198, 0.5);
+    border-radius: 10px;
+    align-items: center;
+    padding: 0px 5px 0px 5px;
+    margin-left: 10px;
+}
+
+.profile_background h3 {
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    font-weight: 400!important;
+    color: #ffffff;
+    margin-bottom: 0px;
+    line-height: 16px;
+    margin-left: 3px;
+    margin-top: 2px;
+}
+
+.tasks_background {
+    width: 80px;
+    height: 32px;
+    background-color: rgba(61, 181, 198, 0.5);
+    border-radius: 10px;
+    align-items: center;
+    padding: 0px 5px 0px 5px;
+    margin-right: 5px;
+}
+
+.tasks_background h3 {
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    font-weight: 400!important;
+    color: #ffffff;
+    margin-bottom: 0px;
+    line-height: 16px;
+    margin-left: 3px;
+    margin-top: 3px;
+}
+
 
 /* TIMER */
 
@@ -996,7 +1038,7 @@ button:focus {
     padding: 0px 8px 0px 8px;
     text-align: center;
     outline: none;
-    line-height: 25px;
+    line-height: 23px;
 }
 
 .task-options .time-input-wrapper {
@@ -1029,7 +1071,7 @@ button:focus {
 .task-options .time-input-seperator {
     text-align: center;
     width: 5px;
-    line-height: 25px;
+    line-height: 2px;
     font-size: 15px;
 }
 

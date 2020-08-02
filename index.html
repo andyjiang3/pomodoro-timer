@@ -73,18 +73,22 @@
                         <li class="nav-item"><span id="focus" class="nav-link">Focus</span><span id="break" class="nav-link section-inactive">Break</span></li>
                             -->
                         <div class="timer_control_background row justify-content-center">
-                            <span class="nav_icon" onclick="resetTimer()"><img id="restart" class="" src="img/nav/restartNew2.svg" alt=""></span>
-                            <span class="nav_icon" onclick="startPauseTimer()"><img id="pausestart" class="" src="img/nav/startNew2.svg" alt=""></span>
-                            <span class="nav_icon" onclick=""><img id="" class="" src="img/nav/skipNew2.svg" alt=""></span>
+                            <img id="restart" class="nav_icon" onclick="resetTimer()" src="img/nav/restartNew2.svg" alt="">
+                            <img class="nav_icon" onclick="startPauseTimer()" id="pausestart" src="img/nav/startNew2.svg" alt="">
+                            <img id="" onclick="" class="nav_icon" src="img/nav/skipNew2.svg" alt="">
 
                         </div>
                     </ul>
                     <ul class="nav navbar-nav menu_nav justify-content-end">
                         <li class="nav-item nav_left_background row">
-                            <span class="nav_icon" onclick="openCloseTask()"><img class="" src="img/nav/taskNew2.svg" alt=""></span>
-
-                            <span class="nav_icon" onclick="profileClicked()"><img id="profile" class="" src="img/nav/profileNew2.svg" alt=""></span>
-
+                            <div class="tasks_background row justify-content-center" onclick="openCloseTask()">
+                                <img class="nav_icon" src="img/nav/tasksNew.svg" alt="">
+                                <h3>Tasks</h3>
+                            </div>
+                            <div class="profile_background row justify-content-center" onclick="profileClicked()">
+                                <img id="profile" class="nav_icon" src="img/nav/profileNew2.svg" alt="">
+                                <h3>Hi Andy!</h3>
+                            </div>
                         </li>
 
                     </ul>
