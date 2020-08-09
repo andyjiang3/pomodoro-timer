@@ -13,6 +13,7 @@ const LINE_THROUGH = "lineThrough";
 
 let LIST, id;
 
+//localStorage.removeItem("TODO");    remove storage
 let data = localStorage.getItem("TODO");
 
 if (data) {
@@ -20,7 +21,6 @@ if (data) {
     id = LIST.length; // set the id to the last one in the list
     loadList(LIST); // load the list to the user interface
 } else {
-    // if data isn't empty
     LIST = [];
     id = 0;
 }
@@ -84,7 +84,6 @@ function toDoAddToSystem() {
 
         // add item to localstorage ( this code must be added where the LIST array is updated)
         localStorage.setItem("TODO", JSON.stringify(LIST));
-
         id++;
     }
     input.value = "";
@@ -110,6 +109,8 @@ function removeToDo(element) {
     element.parentNode.parentNode.removeChild(element.parentNode);
 
     LIST[element.id].trash = true;
+
+    console.log(id);
 }
 
 function validate(evt) {
