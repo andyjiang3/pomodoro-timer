@@ -13,6 +13,16 @@ const LINE_THROUGH = "lineThrough";
 
 let LIST, id;
 
+window.onload = function() {
+    if ($("#to-do-list li").length == 0) {
+        $("#empty-task").show();
+    } else {
+        $("#empty-task").hide();
+    }
+}
+
+
+
 //localStorage.removeItem("TODO");    remove storage
 let data = localStorage.getItem("TODO");
 
@@ -68,6 +78,9 @@ function toDoAddToSystem() {
 
     // if the input isn't empty
     if (toDo) {
+
+        $("#empty-task").hide();
+
         addToDo(toDo, id, false, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
 
         LIST.push({
@@ -111,6 +124,10 @@ function removeToDo(element) {
     LIST[element.id].trash = true;
 
     console.log(id);
+
+    if ($("#to-do-list li").length == 0) {
+        $("#empty-task").show();
+    }
 }
 
 function validate(evt) {
@@ -174,5 +191,4 @@ $("#sessions-input").keypress(function(evt) {
 
 document.getElementById("to-do-add-button").addEventListener("click", function() {
     toDoAddToSystem();
-    console.log("CLICKED!")
 });
