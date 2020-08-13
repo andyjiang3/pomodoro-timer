@@ -23,12 +23,12 @@ window.onload = function() {
 
 
 
-//localStorage.removeItem("TODO");    remove storage
+//localStorage.removeItem("TODO");
 let data = localStorage.getItem("TODO");
 
 if (data) {
     LIST = JSON.parse(data);
-    id = LIST.length; // set the id to the last one in the list
+    id = localStorage.getItem("INDEX");; // set the id to the last one in the list
     loadList(LIST); // load the list to the user interface
 } else {
     LIST = [];
@@ -37,15 +37,14 @@ if (data) {
 
 function loadList(array) {
     array.forEach(function(item) {
-        addToDo(item.name, item.id, item.done, item.trash, item.sessionsNum, item.focusM, item.focusS, item.breakM, item.breakS);
+        addToDo(item.name, item.id, item.done, item.sessionsNum, item.focusM, item.focusS, item.breakM, item.breakS);
     });
 }
 
 
 
-function addToDo(toDo, id, done, trash, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
+function addToDo(toDo, id, done, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
 
-    if (trash) { return; }
 
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH : "";
@@ -81,13 +80,12 @@ function toDoAddToSystem() {
 
         $("#empty-task").hide();
 
-        addToDo(toDo, id, false, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
+        addToDo(toDo, id, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
 
         LIST.push({
             name: toDo,
             id: id,
             done: false,
-            trash: false,
             sessionsNum: sessionsVal,
             focusM: focusMinsVal,
             focusS: focusSecsVal,
@@ -98,6 +96,9 @@ function toDoAddToSystem() {
         // add item to localstorage ( this code must be added where the LIST array is updated)
         localStorage.setItem("TODO", JSON.stringify(LIST));
         id++;
+        localStorage.setItem("INDEX", JSON.stringify(id));
+
+        console.log("ADDED: " + id);
     }
     input.value = "";
 }
@@ -121,9 +122,13 @@ function completeToDo(element) {
 function removeToDo(element) {
     element.parentNode.parentNode.removeChild(element.parentNode);
 
-    LIST[element.id].trash = true;
+    //LIST[element.id].trash = true;
+    var removeIndex = LIST.findIndex(({ id }) => id === element.id);
+    console.log(removeIndex);
+    LIST.splice(removeIndex, 1);
 
-    console.log(id);
+
+    localStorage.setItem("TODO", JSON.stringify(LIST));
 
     if ($("#to-do-list li").length == 0) {
         $("#empty-task").show();
