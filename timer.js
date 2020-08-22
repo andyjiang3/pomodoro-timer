@@ -10,13 +10,13 @@ var durationSecs = 0;
 
 /*
 To Do:
-    fixed switching to new task bug.
+    fixed switching to new task bug.            FIXED
     duplicating tasks.                          FIXED
-    When task is all done
-    When no task
+    When task is all done               
+    When no task                                    
     when adding task when it used to be empty 
     update session tab when adding 1st task
-    loading it update
+    loading it update                   
 */
 
 
