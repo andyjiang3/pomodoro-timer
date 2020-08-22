@@ -2,15 +2,23 @@ var started = false;
 
 var sectionIndex = 0;
 var session = 0;
-var sections = ["Focus", "Break", "Focus", "Break"];
-//                 0        1        2         3        (even = focus, odd = break)
-
-var duration = 25;
-
-var focusDuration = 25;
-var breakDuration = 5;
 
 var timer = new easytimer.Timer();
+
+var durationMins = 25;
+var durationSecs = 0;
+
+/*
+To Do:
+    fixed switching to new task bug.
+    duplicating tasks.                          FIXED
+    When task is all done
+    When no task
+    when adding task when it used to be empty 
+    update session tab when adding 1st task
+    loading it update
+*/
+
 
 function startPauseTimer() {
 
@@ -74,13 +82,49 @@ document.addEventListener('keydown', function(event) {
 });
 
 function timerSetup() {
-    timer.start({ countdown: true, startValues: { minutes: duration }, target: { minutes: 0, seconds: 0 } });
+
+    setTime();
+
+    timer.start({ countdown: true, startValues: { minutes: durationMins, seconds: durationSecs }, target: { minutes: 0, seconds: 0 } });
     $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
 
     //PROGRESS BAR
     $('#timer-progress').width("100%");
 
     started = true;
+}
+
+function setTime() {
+
+
+    //change session tab info
+    //change timer-section
+    updateLabels();
+
+    //New task, set times
+    if (LIST[0].started == false) {
+
+        durationMins = LIST[0].focusM * 1;
+        durationSecs = LIST[0].focusS * 1;
+        console.log("Duration: " + durationMins + ":" + durationSecs);
+        LIST[0].started = true;
+    }
+
+    //DEBUG
+    //console.log("Duration Mins: " + LIST[0].focusM + ", Duration Secs: " + LIST[0].focusS + ", Task Name: " + LIST[0].name);
+    //console.log("Duration Mins2: " + durationMins + ", Duration Secs2: " + durationSecs + ", Task Name2: " + LIST[0].name);
+
+}
+
+function updateLabels() {
+    $('#task-name').text(LIST[0].name);
+    $('#sessions-current').text(session);
+    $('#sessions-max').text(LIST[0].sessionsNum);
+}
+
+function updateTaskList() {
+    $("#to-do-list").empty();
+    loadList(LIST);
 }
 
 timer.addEventListener('secondsUpdated', function(e) {
@@ -91,7 +135,7 @@ timer.addEventListener('secondsUpdated', function(e) {
 
     //PROGRESS BAR
     var totalTime = (timer.getTimeValues().minutes * 60) + timer.getTimeValues().seconds;
-    var width = totalTime / (duration * 60);
+    var width = totalTime / ((durationMins * 60) + durationSecs);
     $('#timer-progress').width(width * 100 + "%");
 
 });
@@ -108,30 +152,53 @@ timer.addEventListener('reset', function(e) {
 
 timer.addEventListener('targetAchieved', function(e) {
 
+    //increment section
     sectionIndex++;
 
-    if (sectionIndex > 2) {
-        session++;
-    } else if (sectionIndex > 3) {
+    if (sectionIndex > 1) {
         session++;
         sectionIndex = 0;
+        updateLabels();
+        //task completed
+        if (session == LIST[0].sessionsNum) {
+            session = 0;
+            LIST[0].done = true;
+
+            updateTaskList();
+            // $("ul#to-do-list li:first .task-status").text("Completed");
+            // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
+
+            //Move task to end of list.
+            LIST.push(LIST.splice(0, 1)[0]);
+            localStorage.setItem("TODO", JSON.stringify(LIST));
+            updateLabels();
+        }
     }
 
-    if (sectionIndex % 2 == 0) { //even = focus
-        duration = focusDuration;
-        $('#focus').removeClass("section-inactive")
-        $('#break').addClass("section-inactive")
+    updateLabels();
+
+    if (sectionIndex == 0) { //even = focus
+        durationMins = LIST[0].focusM * 1;
+        durationSecs = LIST[0].focusS * 1;
+        $('#timer-section').text("FOCUS TIME");
+        // $('#focus').removeClass("section-inactive")
+        // $('#break').addClass("section-inactive")
 
     } else { //odd = break
-        console.log("BREAK TIME")
-        duration = breakDuration;
-        $('#break').removeClass("section-inactive")
-        $('#focus').addClass("section-inactive")
+        $('#timer-section').text("BREAK TIME");
+        durationMins = LIST[0].breakM * 1;
+        durationSecs = LIST[0].breakS * 1;
+
+        // $('#break').removeClass("section-inactive")
+        // $('#focus').addClass("section-inactive")
 
     }
 
-    var minutes = duration < 10 ? "0" + duration : duration;
+    //set text
+    var minutes = durationMins < 10 ? "0" + durationMins : durationMins;
     $('#minutes').text(minutes);
+    var seconds = durationSecs < 10 ? "0" + durationSecs : durationSecs;
+    $('#seconds').text(seconds);
 
     $("#pausestart").attr("src", "img/nav/startNew2.svg");
     //PROGRESS BAR

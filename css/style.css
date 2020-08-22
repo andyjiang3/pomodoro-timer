@@ -1255,6 +1255,24 @@ button:focus {
     margin-left: 8px
 }
 
+.to-do-content .task-status {
+    color: #ffffff;
+    background-color: #f44a40;
+    font-weight: 300!important;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: 0px 5px 0px 5px;
+}
+
+.to-do-content .task-status-completed {
+    color: #ffffff;
+    background-color: #39eb6f;
+    font-weight: 300!important;
+    font-size: 15px;
+    margin-left: 10px;
+    padding: 0px 5px 0px 5px;
+}
+
 .to-do-empty {
     margin-top: 0px;
     display: none;

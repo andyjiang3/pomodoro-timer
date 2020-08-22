@@ -19,6 +19,8 @@ window.onload = function() {
     } else {
         $("#empty-task").hide();
     }
+
+
 }
 
 
@@ -37,13 +39,15 @@ if (data) {
 
 function loadList(array) {
     array.forEach(function(item) {
-        addToDo(item.name, item.id, item.done, item.sessionsNum, item.focusM, item.focusS, item.breakM, item.breakS);
+        addToDo(item.name, item.id, item.started, item.done, item.sessionsNum, item.focusM, item.focusS, item.breakM, item.breakS);
     });
 }
 
 
 
-function addToDo(toDo, id, done, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
+
+
+function addToDo(toDo, id, started, done, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
 
 
     const DONE = done ? CHECK : UNCHECK;
@@ -55,12 +59,36 @@ function addToDo(toDo, id, done, sessionsVal, focusMinsVal, focusSecsVal, breakM
     focusSecsVal = focusSecsVal == 0 ? "" : focusSecsVal + "s";
     breakSecsVal = breakSecsVal == 0 ? "" : breakSecsVal + "s";
 
-    const item = `<li class="item">
+    var item = '';
+
+    // <i class="fa ${DONE} co" job="complete" id="${id}"></i>
+    //                 <p class="text ${LINE}">
+
+    //                 </p>
+    if (done) {
+        item = `<li class="item">
                     <i class="fa ${DONE} co" job="complete" id="${id}"></i>
-                    <p class="text ${LINE}">${toDo}<span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span></p>
+                    <p class="text">
+                    ${toDo}
+                    <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
+                    <span class="task-status-completed">Completed</span>
+                    </p>
                     <i class="fa fa-times-circle fa-lg de" job="delete" id="${id}"></i>
                   </li>
                 `;
+    } else {
+        item = `<li class="item">
+                    <i class="fa ${DONE} co" job="complete" id="${id}"></i>
+                    <p class="text">
+                    ${toDo}
+                    <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
+                    <span class="task-status">In-complete</span>
+                    </p>
+                    <i class="fa fa-times-circle fa-lg de" job="delete" id="${id}"></i>
+                  </li>
+                `;
+
+    }
 
     const position = "beforeend";
 
@@ -80,11 +108,12 @@ function toDoAddToSystem() {
 
         $("#empty-task").hide();
 
-        addToDo(toDo, id, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
+        addToDo(toDo, id, false, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
 
         LIST.push({
             name: toDo,
             id: id,
+            started: false,
             done: false,
             sessionsNum: sessionsVal,
             focusM: focusMinsVal,
@@ -112,11 +141,11 @@ document.addEventListener("keyup", function(even) {
 
 
 function completeToDo(element) {
-    element.classList.toggle(CHECK);
-    element.classList.toggle(UNCHECK);
-    element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH);
+    // element.classList.toggle(CHECK);
+    // element.classList.toggle(UNCHECK);
+    // element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH);
 
-    LIST[element.id].done = LIST[element.id].done ? false : true;
+    // LIST[element.id].done = LIST[element.id].done ? false : true;
 }
 
 function removeToDo(element) {

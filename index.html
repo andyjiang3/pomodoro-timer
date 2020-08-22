@@ -227,17 +227,17 @@
                     <div class="row">
                         <div class="col-sm-12 sessions-name justify-content-start">
                             <div class="box-name"></div>
-                            <h3>FOCUS TIME</h3>
+                            <h3 id="timer-section">FOCUS TIME</h3>
                         </div>
                         <div class="col-sm-12">
-                            <h2>Do History Homework</h2>
+                            <h2 id="task-name">Do History Homework</h2>
 
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4 sessions-count justify-content-center">
                     <div class="sessions-number">
-                        <span class="sessions-current">1</span><span>/</span><span class="sessions-max">2</span>
+                        <span class="sessions-current" id="sessions-current">1</span><span>/</span><span class="sessions-max" id="sessions-max">2</span>
                     </div>
                 </div>
             </div>
@@ -860,8 +860,8 @@
     <script>
         var timerInstance = new easytimer.Timer();
     </script>
-    <script src="timer.js"></script>
     <script src="task.js"></script>
+    <script src="timer.js"></script>
 
     <script>
         var opened = false;
