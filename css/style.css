@@ -713,7 +713,7 @@ button:focus {
 }
 
 .profile_background {
-    width: 105px;
+    width: 90px;
     height: 32px;
     background-color: rgba(61, 181, 198, 0.5);
     border-radius: 10px;
@@ -788,7 +788,7 @@ button:focus {
     color: #ffffff;
     font-size: 140px;
     font-family: "Rubik", sans-serif;
-    text-shadow: 0px 6px 4px rgb(0, 0, 0, 0.25);
+    text-shadow: 0px 6px 8px rgb(0, 0, 0, 0.25);
     font-weight: 400!important;
 }
 

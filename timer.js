@@ -1,8 +1,5 @@
 var started = false;
 
-var sectionIndex = 0;
-var session = 0;
-
 var timer = new easytimer.Timer();
 
 var durationMins = 25;
@@ -12,11 +9,13 @@ var durationSecs = 0;
 To Do:
     fixed switching to new task bug.            FIXED
     duplicating tasks.                          FIXED
+    Update tabs (disappear when no task/all completed) on load
     When task is all done               
     When no task                                    
     when adding task when it used to be empty 
     update session tab when adding 1st task
-    loading it update                   
+    loading it update
+    prevent first task from being deleted if in progress.                   
 */
 
 
@@ -116,10 +115,28 @@ function setTime() {
 
 }
 
+//Update Task Tab
 function updateLabels() {
     $('#task-name').text(LIST[0].name);
-    $('#sessions-current').text(session);
-    $('#sessions-max').text(LIST[0].sessionsNum);
+    $('#sessions-current').text(LIST[0].currentSession);
+    $('#sessions-max').text(LIST[0].maxSessions);
+}
+
+//Update Timer & Task Tab
+function updateAll() {
+    $(".sessions-notify").css("display", "block");
+
+    $('#task-name').text(LIST[0].name);
+    $('#sessions-current').text(LIST[0].currentSession);
+    $('#sessions-max').text(LIST[0].maxSessions);
+
+    if (LIST[0].taskSection == 0) {
+        $('#minutes').text(LIST[0].focusM);
+        $('#seconds').text(LIST[0].focusS);
+    } else {
+        $('#minutes').text(LIST[0].breakM);
+        $('#seconds').text(LIST[0].breakS);
+    }
 }
 
 function updateTaskList() {
@@ -153,31 +170,31 @@ timer.addEventListener('reset', function(e) {
 timer.addEventListener('targetAchieved', function(e) {
 
     //increment section
-    sectionIndex++;
+    LIST[0].taskSection++;
 
-    if (sectionIndex > 1) {
-        session++;
-        sectionIndex = 0;
+    if (LIST[0].taskSection > 1) {
+        LIST[0].currentSession++;
+        LIST[0].taskSection = 0;
         updateLabels();
         //task completed
-        if (session == LIST[0].sessionsNum) {
-            session = 0;
+        if (LIST[0].currentSession == LIST[0].maxSessions) {
             LIST[0].done = true;
 
-            updateTaskList();
+
             // $("ul#to-do-list li:first .task-status").text("Completed");
             // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
 
             //Move task to end of list.
             LIST.push(LIST.splice(0, 1)[0]);
             localStorage.setItem("TODO", JSON.stringify(LIST));
+            updateTaskList();
             updateLabels();
         }
     }
 
     updateLabels();
 
-    if (sectionIndex == 0) { //even = focus
+    if (LIST[0].taskSection == 0) { //even = focus
         durationMins = LIST[0].focusM * 1;
         durationSecs = LIST[0].focusS * 1;
         $('#timer-section').text("FOCUS TIME");

@@ -13,16 +13,6 @@ const LINE_THROUGH = "lineThrough";
 
 let LIST, id;
 
-window.onload = function() {
-    if ($("#to-do-list li").length == 0) {
-        $("#empty-task").show();
-    } else {
-        $("#empty-task").hide();
-    }
-
-
-}
-
 
 
 //localStorage.removeItem("TODO");
@@ -37,9 +27,25 @@ if (data) {
     id = 0;
 }
 
+window.onload = function() {
+    if ($("#to-do-list li").length == 0) {
+        $("#empty-task").show();
+    } else {
+        $("#empty-task").hide();
+    }
+
+    //there is data and task not complete
+    if (LIST.length != 0 && LIST[0].done == false) {
+        updateAll();
+    } else {
+        $(".sessions-notify").css("display", "none");
+    }
+
+}
+
 function loadList(array) {
     array.forEach(function(item) {
-        addToDo(item.name, item.id, item.started, item.done, item.sessionsNum, item.focusM, item.focusS, item.breakM, item.breakS);
+        addToDo(item.name, item.id, item.started, item.done, item.taskSection, item.currentSession, item.maxSessions, item.focusM, item.focusS, item.breakM, item.breakS);
     });
 }
 
@@ -47,7 +53,7 @@ function loadList(array) {
 
 
 
-function addToDo(toDo, id, started, done, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
+function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
 
 
     const DONE = done ? CHECK : UNCHECK;
@@ -106,16 +112,19 @@ function toDoAddToSystem() {
     // if the input isn't empty
     if (toDo) {
 
+
         $("#empty-task").hide();
 
-        addToDo(toDo, id, false, false, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
+        addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
 
         LIST.push({
             name: toDo,
             id: id,
             started: false,
             done: false,
-            sessionsNum: sessionsVal,
+            taskSection: 0,
+            currentSession: 0,
+            maxSessions: sessionsVal,
             focusM: focusMinsVal,
             focusS: focusSecsVal,
             breakM: breakMinsVal,
@@ -127,7 +136,7 @@ function toDoAddToSystem() {
         id++;
         localStorage.setItem("INDEX", JSON.stringify(id));
 
-        console.log("ADDED: " + id);
+        updateAll();
     }
     input.value = "";
 }
@@ -161,6 +170,7 @@ function removeToDo(element) {
 
     if ($("#to-do-list li").length == 0) {
         $("#empty-task").show();
+        $(".sessions-notify").css("display", "none");
     }
 }
 
