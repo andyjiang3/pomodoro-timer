@@ -33,13 +33,15 @@ window.onload = function() {
     } else {
         $("#empty-task").hide();
     }
+    updateAll();
 
-    //there is data and task not complete
-    if (LIST.length != 0 && LIST[0].done == false) {
-        updateAll();
-    } else {
-        $(".sessions-notify").css("display", "none");
-    }
+    // //there is data and task not complete
+    // if (LIST.length != 0 && LIST[0].done == false) {
+    //     updateAll();
+    // } else {
+    //     updateAll();
+    //     $(".sessions-notify").css("display", "none");
+    // }
 
 }
 
@@ -161,16 +163,17 @@ function removeToDo(element) {
     element.parentNode.parentNode.removeChild(element.parentNode);
 
     //LIST[element.id].trash = true;
-    var removeIndex = LIST.findIndex(({ id }) => id === element.id);
+    var removeIndex = LIST.findIndex(({ id }) => id == element.id);
     console.log(removeIndex);
     LIST.splice(removeIndex, 1);
-
 
     localStorage.setItem("TODO", JSON.stringify(LIST));
 
     if ($("#to-do-list li").length == 0) {
         $("#empty-task").show();
         $(".sessions-notify").css("display", "none");
+    } else {
+        updateAll();
     }
 }
 
@@ -202,11 +205,16 @@ function formatNum(ele) {
 
 list.addEventListener("click", function(event) {
     const element = event.target; // return the clicked element inside list
-    const elementJob = element.attributes.job.value; // complete or delete
+    var elementJob;
+    if (element.hasAttribute('job')) {
+        elementJob = element.attributes.job.value; // complete or delete
+    }
 
-    if (elementJob == "complete") {
-        completeToDo(element);
-    } else if (elementJob == "delete") {
+    // if (elementJob == "complete") {
+    //     completeToDo(element);
+    // } 
+
+    if (elementJob == "delete") {
         removeToDo(element);
     }
 

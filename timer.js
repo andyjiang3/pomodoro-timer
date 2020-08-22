@@ -2,20 +2,27 @@ var started = false;
 
 var timer = new easytimer.Timer();
 
+var sectionIndex = 0;
+var defaultTimer = false;
+
 var durationMins = 25;
 var durationSecs = 0;
 
 /*
 To Do:
-    fixed switching to new task bug.            FIXED
-    duplicating tasks.                          FIXED
-    Update tabs (disappear when no task/all completed) on load
+    fixed switching to new task bug.                            FIXED
+    duplicating tasks.                                          FIXED
+    Update tabs (disappear when no task/all completed) on load  FIXED
+    Update tabs when all completed
+    Default timer when task is deleted
+    Animations
     When task is all done               
     When no task                                    
     when adding task when it used to be empty 
-    update session tab when adding 1st task
+    update session tab when adding 1st task                     FIXED
     loading it update
-    prevent first task from being deleted if in progress.                   
+    prevent first task from being deleted if in progress.  
+    fix bug with task not getting removed from lsit             FIXED                 
 */
 
 
@@ -101,12 +108,14 @@ function setTime() {
     updateLabels();
 
     //New task, set times
-    if (LIST[0].started == false) {
+    if (LIST.length != 0 && LIST[0].started == false) {
 
         durationMins = LIST[0].focusM * 1;
         durationSecs = LIST[0].focusS * 1;
         console.log("Duration: " + durationMins + ":" + durationSecs);
         LIST[0].started = true;
+
+        localStorage.setItem("TODO", JSON.stringify(LIST));
     }
 
     //DEBUG
@@ -117,25 +126,53 @@ function setTime() {
 
 //Update Task Tab
 function updateLabels() {
-    $('#task-name').text(LIST[0].name);
-    $('#sessions-current').text(LIST[0].currentSession);
-    $('#sessions-max').text(LIST[0].maxSessions);
+    if (LIST.length != 0 && LIST[0].done == false) {
+        defaultTimer = false;
+        $('#task-name').text(LIST[0].name);
+        $('#sessions-current').text(LIST[0].currentSession);
+        $('#sessions-max').text(LIST[0].maxSessions);
+    } else if (defaultTimer == false) {
+        $(".sessions-notify").css("display", "none");
+        durationMins = 0;
+        durationSecs = 30;
+        sectionIndex = 0;
+        $('#minutes').text(durationMins + "0");
+        $('#seconds').text(durationSecs);
+        defaultTimer = true;
+    }
 }
 
 //Update Timer & Task Tab
 function updateAll() {
-    $(".sessions-notify").css("display", "block");
+    if (LIST.length != 0 && LIST[0].done == false) {
+        defaultTimer = false;
+        $(".sessions-notify").css("display", "block");
 
-    $('#task-name').text(LIST[0].name);
-    $('#sessions-current').text(LIST[0].currentSession);
-    $('#sessions-max').text(LIST[0].maxSessions);
+        $('#task-name').text(LIST[0].name);
+        $('#sessions-current').text(LIST[0].currentSession);
+        $('#sessions-max').text(LIST[0].maxSessions);
 
-    if (LIST[0].taskSection == 0) {
-        $('#minutes').text(LIST[0].focusM);
-        $('#seconds').text(LIST[0].focusS);
+        if (LIST[0].taskSection == 0) {
+            durationMins = LIST[0].focusM * 1;
+            durationSecs = LIST[0].focusS * 1;
+            $('#minutes').text(LIST[0].focusM);
+            $('#seconds').text(LIST[0].focusS);
+            $('#timer-section').text("FOCUS TIME");
+        } else {
+            durationMins = LIST[0].breakM * 1;
+            durationSecs = LIST[0].breakS * 1;
+            $('#minutes').text(LIST[0].breakM);
+            $('#seconds').text(LIST[0].breakS);
+            $('#timer-section').text("BREAK TIME");
+        }
     } else {
-        $('#minutes').text(LIST[0].breakM);
-        $('#seconds').text(LIST[0].breakS);
+        $(".sessions-notify").css("display", "none");
+        durationMins = 0;
+        durationSecs = 30;
+        sectionIndex = 0;
+        $('#minutes').text(durationMins + "0");
+        $('#seconds').text(durationSecs);
+
     }
 }
 
@@ -169,46 +206,72 @@ timer.addEventListener('reset', function(e) {
 
 timer.addEventListener('targetAchieved', function(e) {
 
-    //increment section
-    LIST[0].taskSection++;
+    if (LIST.length != 0 && LIST[0].done == false) {
 
-    if (LIST[0].taskSection > 1) {
-        LIST[0].currentSession++;
-        LIST[0].taskSection = 0;
-        updateLabels();
-        //task completed
-        if (LIST[0].currentSession == LIST[0].maxSessions) {
-            LIST[0].done = true;
+        //increment section
+        LIST[0].taskSection++;
 
-
-            // $("ul#to-do-list li:first .task-status").text("Completed");
-            // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
-
-            //Move task to end of list.
-            LIST.push(LIST.splice(0, 1)[0]);
-            localStorage.setItem("TODO", JSON.stringify(LIST));
-            updateTaskList();
+        if (LIST[0].taskSection > 1) {
+            LIST[0].currentSession++;
+            LIST[0].taskSection = 0;
             updateLabels();
+            //task completed
+            if (LIST[0].currentSession == LIST[0].maxSessions) {
+                LIST[0].done = true;
+
+
+                // $("ul#to-do-list li:first .task-status").text("Completed");
+                // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
+
+                //Move task to end of list.
+                LIST.push(LIST.splice(0, 1)[0]);
+
+                localStorage.setItem("TODO", JSON.stringify(LIST));
+                updateTaskList();
+                updateLabels();
+
+                if (LIST.length == 0 || LIST[0].done == true) {
+                    defaultTimer = false;
+                    updateLabels();
+                }
+            }
         }
-    }
 
-    updateLabels();
+        updateLabels();
+        localStorage.setItem("TODO", JSON.stringify(LIST));
 
-    if (LIST[0].taskSection == 0) { //even = focus
-        durationMins = LIST[0].focusM * 1;
-        durationSecs = LIST[0].focusS * 1;
-        $('#timer-section').text("FOCUS TIME");
-        // $('#focus').removeClass("section-inactive")
-        // $('#break').addClass("section-inactive")
+        if (LIST[0].taskSection == 0) { //even = focus
+            durationMins = LIST[0].focusM * 1;
+            durationSecs = LIST[0].focusS * 1;
+            $('#timer-section').text("FOCUS TIME");
+            // $('#focus').removeClass("section-inactive")
+            // $('#break').addClass("section-inactive")
 
-    } else { //odd = break
-        $('#timer-section').text("BREAK TIME");
-        durationMins = LIST[0].breakM * 1;
-        durationSecs = LIST[0].breakS * 1;
+        } else { //odd = break
+            $('#timer-section').text("BREAK TIME");
+            durationMins = LIST[0].breakM * 1;
+            durationSecs = LIST[0].breakS * 1;
 
-        // $('#break').removeClass("section-inactive")
-        // $('#focus').addClass("section-inactive")
+            // $('#break').removeClass("section-inactive")
+            // $('#focus').addClass("section-inactive")
 
+        }
+    } else {
+
+        sectionIndex++;
+
+        if (sectionIndex > 1) {
+            sectionIndex = 0;
+        }
+
+        if (sectionIndex == 0) {
+            durationMins = 0;
+            durationSecs = 30;
+
+        } else {
+            durationMins = 0;
+            durationSecs = 25;
+        }
     }
 
     //set text
