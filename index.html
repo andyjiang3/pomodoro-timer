@@ -165,23 +165,23 @@
                             <div class="row task-options">
                                 <div class="col-sm-4 task-option">
                                     <h3>SESSIONS</h3>
-                                    <input class="number-input" type="number" value="1" min="1" max="5" id="sessions-input">
+                                    <input class="number-input" onClick="this.select();" type="number" value="1" min="1" max="5" id="sessions-input">
                                 </div>
                                 <div class="col-sm-4 task-option">
                                     <h3>FOCUS</h3>
                                     <div class="time-input-wrapper">
-                                        <input class="time-input" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="focus-input-mins" value="25" maxlength="2">
+                                        <input class="time-input" onClick="this.select();" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="focus-input-mins" value="25" maxlength="2">
                                         <div class="time-input-seperator">:</div>
-                                        <input class="time-input" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="focus-input-secs" value="00" maxlength="2">
+                                        <input class="time-input" onClick="this.select();" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="focus-input-secs" value="00" maxlength="2">
                                     </div>
 
                                 </div>
                                 <div class="col-sm-4 task-option">
                                     <h3>BREAK</h3>
                                     <div class="time-input-wrapper">
-                                        <input class="time-input" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="break-input-mins" value="05" maxlength="2">
+                                        <input class="time-input" onClick="this.select();" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="break-input-mins" value="05" maxlength="2">
                                         <div class="time-input-seperator">:</div>
-                                        <input class="time-input" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="break-input-secs" value="00" maxlength="2">
+                                        <input class="time-input" onClick="this.select();" onkeypress="validate(event)" onBlur="formatNum(this)" type="text" id="break-input-secs" value="00" maxlength="2">
                                     </div>
                                 </div>
                             </div>
