@@ -73,24 +73,32 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
     //                 <p class="text ${LINE}">
 
     //                 </p>
-    if (done) {
+
+    if (LIST.length != 0 && LIST[0].id == id && LIST[0].started == true) {
         item = `<li class="item">
-                    <i class="fa ${DONE} co" job="complete" id="${id}"></i>
                     <p class="text">
+                    <span class="task-status-inprogress" id="${id}">In Progress</span>
                     ${toDo}
                     <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
-                    <span class="task-status-completed">Completed</span>
+                    </p>
+                  </li>
+                `;
+    } else if (done) {
+        item = `<li class="item">
+                    <p class="text">
+                    <span class="task-status-completed" id="${id}">Complete</span>
+                    ${toDo}
+                    <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
                     </p>
                     <i class="fa fa-times-circle fa-lg de" job="delete" id="${id}"></i>
                   </li>
                 `;
     } else {
         item = `<li class="item">
-                    <i class="fa ${DONE} co" job="complete" id="${id}"></i>
                     <p class="text">
+                    <span class="task-status" id="${id}">Incomplete</span>
                     ${toDo}
                     <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
-                    <span class="task-status">In-complete</span>
                     </p>
                     <i class="fa fa-times-circle fa-lg de" job="delete" id="${id}"></i>
                   </li>
@@ -138,7 +146,17 @@ function toDoAddToSystem() {
         id++;
         localStorage.setItem("INDEX", JSON.stringify(id));
 
-        updateAll();
+        if (defaultTimer) {
+
+            started = false;
+            timer.stop();
+            $("#pausestart").attr("src", "img/nav/startNew2.svg");
+            updateAll();
+
+        } else {
+            updateLabels();
+        }
+
     }
     input.value = "";
 }

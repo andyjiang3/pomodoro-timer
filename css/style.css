@@ -1205,8 +1205,8 @@ button:focus {
 
 .item {
     width: 860px;
-    height: 45px;
-    min-height: 45px;
+    height: 38px;
+    min-height: 38px;
     position: relative;
     border-bottom: 1px solid #c4c4c4;
     list-style: none;
@@ -1219,7 +1219,7 @@ button:focus {
     font-size: 25px;
     padding-left: 5px;
     left: 0px;
-    top: 10px;
+    top: 8px;
 }
 
 .item i.co:hover {
@@ -1234,13 +1234,13 @@ button:focus {
     position: absolute;
     padding: 0;
     margin: 0;
-    font-size: 16px;
-    left: 35px;
+    font-size: 15px;
+    left: 0px;
     top: 5px;
     max-width: 800px;
     font-family: "Rubik", sans-serif;
     font-weight: 400!important;
-    line-height: 35px;
+    line-height: 30px;
     color: #000000;
 }
 
@@ -1252,7 +1252,7 @@ button:focus {
 .item i.de {
     position: absolute;
     right: 15px;
-    top: 20px;
+    top: 15px;
 }
 
 .item i.de:hover {
@@ -1264,25 +1264,61 @@ button:focus {
     color: #A7A7A7;
     font-weight: 300!important;
     font-size: 15px;
-    margin-left: 8px
+    margin-left: 10px
 }
 
 .to-do-content .task-status {
     color: #ffffff;
     background-color: #f44a40;
     font-weight: 300!important;
-    font-size: 15px;
-    margin-left: 10px;
-    padding: 0px 5px 0px 5px;
+    font-size: 14px;
+    margin-right: 8px;
+    display: inline-block;
+    height: 20px;
+    width: 98px;
+    top: 0px;
+    line-height: 21px;
+    padding: 0px 8px 0px 8px;
+    align-content: center;
+    position: relative;
+    border-radius: 3px;
+    text-align: center;
 }
 
 .to-do-content .task-status-completed {
-    color: #ffffff;
     background-color: #39eb6f;
+    color: #ffffff;
     font-weight: 300!important;
-    font-size: 15px;
-    margin-left: 10px;
-    padding: 0px 5px 0px 5px;
+    font-size: 14px;
+    margin-right: 8px;
+    display: inline-block;
+    height: 20px;
+    width: 98px;
+    top: 0px;
+    line-height: 21px;
+    padding: 0px 8px 0px 8px;
+    align-content: center;
+    position: relative;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.to-do-content .task-status-inprogress {
+    background-color: #f8aa1a;
+    color: #ffffff;
+    font-weight: 300!important;
+    font-size: 14px;
+    margin-right: 8px;
+    display: inline-block;
+    height: 20px;
+    width: 98px;
+    top: 0px;
+    line-height: 21px;
+    padding: 0px 8px 0px 8px;
+    align-content: center;
+    position: relative;
+    border-radius: 3px;
+    text-align: center;
 }
 
 .to-do-empty {

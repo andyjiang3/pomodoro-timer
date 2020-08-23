@@ -10,22 +10,23 @@ var durationSecs = 0;
 
 /*
 To Do:
-    fixed switching to new task bug.                            FIXED
-    duplicating tasks.                                          FIXED
-    Update tabs (disappear when no task/all completed) on load  FIXED
-    Update tabs when all completed                              FIXED                                 
-    Default timer when task is deleted                          FIXED      
-    When task is all done                                       FIXED
-    When no task                                                FIXED                  
-    when adding task when it used to be empty                   FIXED
-    update session tab when adding 1st task                     FIXED
-    loading it update                                           FIXED
-    fix bug with task not getting removed from lsit             FIXED
-    Status & completed task to end (even when new added),  
-    prevent first task from being deleted if in progress (add in-prog status).  
-    Animations    
-    Change text to default time when task list is empty
-    Fix when new task is added to empty list (override default timer and fix progress bar)
+    fixed switching to new task bug.                                                            FIXED
+    duplicating tasks.                                                                          FIXED
+    Update tabs (disappear when no task/all completed) on load                                  FIXED
+    Update tabs when all completed                                                              FIXED                                 
+    Default timer when task is deleted                                                          FIXED      
+    When task is all done                                                                       FIXED
+    When no task                                                                                FIXED                  
+    when adding task when it used to be empty                                                   FIXED
+    update session tab when adding 1st task                                                     FIXED
+    loading it update                                                                           FIXED
+    fix bug with task not getting removed from lsit                                             FIXED
+    Status & completed task to end (even when new added),           
+    prevent first task from being deleted if in progress (add in-prog status).                  FIXED
+    Animations                                                                                     
+    Change text to default time when task list is empty                                         
+    Fix when new task is added to empty list (override default timer and fix progress bar)      FIXED
+    Update time when new task is added (when default not started)
 
 */
 
@@ -95,6 +96,7 @@ function timerSetup() {
 
     setTime();
 
+    console.log("ABOUT TO START: " + durationMins + ":" + durationSecs);
     timer.start({ countdown: true, startValues: { minutes: durationMins, seconds: durationSecs }, target: { minutes: 0, seconds: 0 } });
     $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
 
@@ -120,6 +122,7 @@ function setTime() {
         LIST[0].started = true;
 
         localStorage.setItem("TODO", JSON.stringify(LIST));
+        updateTaskList();
     }
 
     //DEBUG
@@ -132,9 +135,12 @@ function setTime() {
 function updateLabels() {
     if (LIST.length != 0 && LIST[0].done == false) {
         defaultTimer = false;
+        $(".sessions-notify").css("display", "block");
         $('#task-name').text(LIST[0].name);
         $('#sessions-current').text(LIST[0].currentSession);
         $('#sessions-max').text(LIST[0].maxSessions);
+        console.log("UPDATEEEDDD");
+        return;
     } else if (defaultTimer == false) {
         $(".sessions-notify").css("display", "none");
         durationMins = 0;
