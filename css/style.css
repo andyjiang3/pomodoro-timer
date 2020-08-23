@@ -724,6 +724,11 @@ button:focus {
     cursor: pointer;
 }
 
+.profile_background:hover {
+    transition-duration: 1s;
+    background-color: #297E89;
+}
+
 .profile_background h3 {
     font-family: "Rubik", sans-serif;
     font-size: 16px;
@@ -744,6 +749,11 @@ button:focus {
     padding: 0px 5px 0px 5px;
     margin-right: 5px;
     cursor: pointer;
+}
+
+.tasks_background:hover {
+    transition-duration: 1s;
+    background-color: #297E89;
 }
 
 .tasks_background h3 {

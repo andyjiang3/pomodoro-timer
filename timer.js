@@ -13,16 +13,20 @@ To Do:
     fixed switching to new task bug.                            FIXED
     duplicating tasks.                                          FIXED
     Update tabs (disappear when no task/all completed) on load  FIXED
-    Update tabs when all completed
-    Default timer when task is deleted
-    Animations
-    When task is all done               
-    When no task                                    
-    when adding task when it used to be empty 
+    Update tabs when all completed                              FIXED                                 
+    Default timer when task is deleted                          FIXED      
+    When task is all done                                       FIXED
+    When no task                                                FIXED                  
+    when adding task when it used to be empty                   FIXED
     update session tab when adding 1st task                     FIXED
-    loading it update
-    prevent first task from being deleted if in progress.  
-    fix bug with task not getting removed from lsit             FIXED                 
+    loading it update                                           FIXED
+    fix bug with task not getting removed from lsit             FIXED
+    Status & completed task to end (even when new added),  
+    prevent first task from being deleted if in progress (add in-prog status).  
+    Animations    
+    Change text to default time when task list is empty
+    Fix when new task is added to empty list (override default timer and fix progress bar)
+
 */
 
 
