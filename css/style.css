@@ -1191,7 +1191,9 @@ button:focus {
     background-color: #FFF;
     overflow: auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
 }
 
 .to-do-content::-webkit-scrollbar {

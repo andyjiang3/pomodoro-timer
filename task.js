@@ -1,4 +1,5 @@
 const list = document.getElementById("to-do-list");
+const compList = document.getElementById("complete-list");
 const input = document.getElementById("to-do-input");
 const sessions = document.getElementById("sessions-input");
 const focusMins = document.getElementById("focus-input-mins");
@@ -11,24 +12,34 @@ const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
 
-let LIST, id;
+let LIST, COMP, id;
 
 
 
 //localStorage.removeItem("TODO");
+//localStorage.removeItem("CTODO");
 let data = localStorage.getItem("TODO");
+let data2 = localStorage.getItem("CTODO")
 
 if (data) {
     LIST = JSON.parse(data);
     id = localStorage.getItem("INDEX");; // set the id to the last one in the list
-    loadList(LIST); // load the list to the user interface
+    loadList(LIST, false); // load the list to the user interface
 } else {
     LIST = [];
     id = 0;
 }
 
+if (data2) {
+    COMP = JSON.parse(data2);
+    loadList(COMP, true); // load the list to the user interface
+
+} else {
+    COMP = [];
+}
+
 window.onload = function() {
-    if ($("#to-do-list li").length == 0) {
+    if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
         $("#empty-task").show();
     } else {
         $("#empty-task").hide();
@@ -45,9 +56,10 @@ window.onload = function() {
 
 }
 
-function loadList(array) {
+function loadList(array, comp) {
     array.forEach(function(item) {
-        addToDo(item.name, item.id, item.started, item.done, item.taskSection, item.currentSession, item.maxSessions, item.focusM, item.focusS, item.breakM, item.breakS);
+        addToDo(item.name, item.id, item.started, item.done, item.taskSection, item.currentSession, item.maxSessions, item.focusM, item.focusS, item.breakM, item.breakS, comp);
+
     });
 }
 
@@ -55,7 +67,7 @@ function loadList(array) {
 
 
 
-function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal) {
+function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, comp) {
 
 
     const DONE = done ? CHECK : UNCHECK;
@@ -73,9 +85,36 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
     //                 <p class="text ${LINE}">
 
     //                 </p>
+    if (comp) {
+        console.log("Loading Completed Tasks");
+        if (done) {
+            item = `<li class="item">
+                    <p class="text">
+                    <span class="task-status-completed" id="${id}">Complete</span>
+                    ${toDo}
+                    <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
+                    </p>
+                  </li>
+                `;
+        } else {
+            item = `<li class="item">
+                    <p class="text">
+                    <span class="task-status" id="${id}">Incomplete</span>
+                    ${toDo}
+                    <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
+                    </p>
+                  </li>
+                `;
 
-    if (LIST.length != 0 && LIST[0].id == id && LIST[0].started == true) {
-        item = `<li class="item">
+        }
+
+        const position = "beforeend";
+        compList.insertAdjacentHTML(position, item);
+
+    } else {
+        console.log("Loading Regular Tasks");
+        if (LIST.length != 0 && LIST[0].id == id && LIST[0].started == true) {
+            item = `<li class="item">
                     <p class="text">
                     <span class="task-status-inprogress" id="${id}">In Progress</span>
                     ${toDo}
@@ -83,8 +122,8 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
                     </p>
                   </li>
                 `;
-    } else if (done) {
-        item = `<li class="item">
+        } else if (done) {
+            item = `<li class="item">
                     <p class="text">
                     <span class="task-status-completed" id="${id}">Complete</span>
                     ${toDo}
@@ -93,8 +132,8 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
                     <i class="fa fa-times-circle fa-lg de" job="delete" id="${id}"></i>
                   </li>
                 `;
-    } else {
-        item = `<li class="item">
+        } else {
+            item = `<li class="item">
                     <p class="text">
                     <span class="task-status" id="${id}">Incomplete</span>
                     ${toDo}
@@ -104,11 +143,11 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
                   </li>
                 `;
 
+        }
+
+        const position = "beforeend";
+        list.insertAdjacentHTML(position, item);
     }
-
-    const position = "beforeend";
-
-    list.insertAdjacentHTML(position, item);
 }
 
 function toDoAddToSystem() {
@@ -125,7 +164,7 @@ function toDoAddToSystem() {
 
         $("#empty-task").hide();
 
-        addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal);
+        addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, false);
 
         LIST.push({
             name: toDo,
@@ -146,15 +185,20 @@ function toDoAddToSystem() {
         id++;
         localStorage.setItem("INDEX", JSON.stringify(id));
 
-        if (defaultTimer) {
 
+        //Override default timer
+        if (defaultTimer) {
             started = false;
             timer.stop();
             $("#pausestart").attr("src", "img/nav/startNew2.svg");
             updateAll();
 
         } else {
-            updateLabels();
+            if (LIST.length == 1) {
+                updateAll();
+            } else {
+                updateLabels();
+            }
         }
 
     }
@@ -187,9 +231,13 @@ function removeToDo(element) {
 
     localStorage.setItem("TODO", JSON.stringify(LIST));
 
-    if ($("#to-do-list li").length == 0) {
+    if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
         $("#empty-task").show();
+    }
+
+    if ($("#to-do-list li").length == 0) {
         $(".sessions-notify").css("display", "none");
+        updateAll();
     } else {
         updateAll();
     }

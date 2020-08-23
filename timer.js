@@ -21,12 +21,16 @@ To Do:
     update session tab when adding 1st task                                                     FIXED
     loading it update                                                                           FIXED
     fix bug with task not getting removed from lsit                                             FIXED
-    Status & completed task to end (even when new added),           
-    prevent first task from being deleted if in progress (add in-prog status).                  FIXED
-    Animations                                                                                     
-    Change text to default time when task list is empty                                         
+    Status & completed task to end (even when new added),                                       FIXED
+    prevent first task from being deleted if in progress (add in-prog status).                  FIXED                                                                                   
+    Change text to default time when task list is empty                                         FIXED                      
     Fix when new task is added to empty list (override default timer and fix progress bar)      FIXED
-    Update time when new task is added (when default not started)
+    Update time when new task is added (when default not started)                               FIXED
+    Bring user back top timer page if still on task page when start is pressed                  
+    Cap completed task, delete when full
+    Cap max tasks    
+    Animations    
+    Notification when new task completed   
 
 */
 
@@ -188,7 +192,10 @@ function updateAll() {
 
 function updateTaskList() {
     $("#to-do-list").empty();
-    loadList(LIST);
+    loadList(LIST, false);
+
+    $("#complete-list").empty();
+    loadList(COMP, true);
 }
 
 timer.addEventListener('secondsUpdated', function(e) {
@@ -234,37 +241,42 @@ timer.addEventListener('targetAchieved', function(e) {
                 // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
 
                 //Move task to end of list.
-                LIST.push(LIST.splice(0, 1)[0]);
+                //COMP.push(LIST.splice(0, 1));
+                COMP.push(JSON.parse(JSON.stringify(LIST[0])));
+                LIST.splice(0, 1);
 
                 localStorage.setItem("TODO", JSON.stringify(LIST));
+                localStorage.setItem("CTODO", JSON.stringify(COMP));
                 updateTaskList();
                 updateLabels();
 
                 if (LIST.length == 0 || LIST[0].done == true) {
                     defaultTimer = false;
                     updateLabels();
+                    //dont go to next step
                 }
             }
         }
 
         updateLabels();
         localStorage.setItem("TODO", JSON.stringify(LIST));
+        if (LIST.length != 0) {
+            if (LIST[0].taskSection == 0) { //even = focus
+                durationMins = LIST[0].focusM * 1;
+                durationSecs = LIST[0].focusS * 1;
+                $('#timer-section').text("FOCUS TIME");
+                // $('#focus').removeClass("section-inactive")
+                // $('#break').addClass("section-inactive")
 
-        if (LIST[0].taskSection == 0) { //even = focus
-            durationMins = LIST[0].focusM * 1;
-            durationSecs = LIST[0].focusS * 1;
-            $('#timer-section').text("FOCUS TIME");
-            // $('#focus').removeClass("section-inactive")
-            // $('#break').addClass("section-inactive")
+            } else { //odd = break
+                $('#timer-section').text("BREAK TIME");
+                durationMins = LIST[0].breakM * 1;
+                durationSecs = LIST[0].breakS * 1;
 
-        } else { //odd = break
-            $('#timer-section').text("BREAK TIME");
-            durationMins = LIST[0].breakM * 1;
-            durationSecs = LIST[0].breakS * 1;
+                // $('#break').removeClass("section-inactive")
+                // $('#focus').addClass("section-inactive")
 
-            // $('#break').removeClass("section-inactive")
-            // $('#focus').addClass("section-inactive")
-
+            }
         }
     } else {
 
