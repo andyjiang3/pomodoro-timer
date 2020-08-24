@@ -895,14 +895,26 @@ button:focus {
     width: 300px;
     height: 60px;
     position: absolute;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
     box-shadow: 0px 4px 4px rgb(0, 0, 0, 0.25);
     top: calc(100vh - 105px);
     left: 15px;
     right: auto;
     background-color: white;
     border-radius: 8px;
+    overflow: hidden;
+    /*Animation*/
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition-property: transform, opacity, visibility;
+    transition-duration: 0.7s;
+    transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.sessions-notify.display {
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: visible;
 }
 
 .sessions-name {

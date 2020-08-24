@@ -8,6 +8,8 @@ var defaultTimer = false;
 var durationMins = 25;
 var durationSecs = 0;
 
+
+
 /*
 To Do:
     fixed switching to new task bug.                                                            FIXED
@@ -29,9 +31,11 @@ To Do:
     Bring user back top timer page if still on task page when start is pressed                  
     Cap completed task, delete when full
     Cap max tasks    
-    Animations    
+    Animations                                                                                  FIXED
     Notification when new task completed   
-
+    Update default to 25, 5. 
+    when adding new task to empty list, show aniamtion when user is out of task 
+    skip bar.
 */
 
 
@@ -138,20 +142,54 @@ function setTime() {
 //Update Task Tab
 function updateLabels() {
     if (LIST.length != 0 && LIST[0].done == false) {
+
         defaultTimer = false;
-        $(".sessions-notify").css("display", "block");
         $('#task-name').text(LIST[0].name);
         $('#sessions-current').text(LIST[0].currentSession);
         $('#sessions-max').text(LIST[0].maxSessions);
-        console.log("UPDATEEEDDD");
+
+        showTaskBar();
+
         return;
+
     } else if (defaultTimer == false) {
-        $(".sessions-notify").css("display", "none");
+
+        dismissTaskBar();
+
         durationMins = 0;
         durationSecs = 30;
         sectionIndex = 0;
+
         $('#minutes').text(durationMins + "0");
         $('#seconds').text(durationSecs);
+
+        defaultTimer = true;
+    }
+}
+
+function updateLabelsBetween() {
+    if (LIST.length != 0 && LIST[0].done == false) {
+
+        dismissAndShowBar();
+
+        defaultTimer = false;
+        $('#task-name').text(LIST[0].name);
+        $('#sessions-current').text(LIST[0].currentSession);
+        $('#sessions-max').text(LIST[0].maxSessions);
+
+        return;
+
+    } else if (defaultTimer == false) {
+
+        dismissTaskBar();
+
+        durationMins = 0;
+        durationSecs = 30;
+        sectionIndex = 0;
+
+        $('#minutes').text(durationMins + "0");
+        $('#seconds').text(durationSecs);
+
         defaultTimer = true;
     }
 }
@@ -160,11 +198,12 @@ function updateLabels() {
 function updateAll() {
     if (LIST.length != 0 && LIST[0].done == false) {
         defaultTimer = false;
-        $(".sessions-notify").css("display", "block");
 
         $('#task-name').text(LIST[0].name);
         $('#sessions-current').text(LIST[0].currentSession);
         $('#sessions-max').text(LIST[0].maxSessions);
+
+        showTaskBar();
 
         if (LIST[0].taskSection == 0) {
             durationMins = LIST[0].focusM * 1;
@@ -180,7 +219,7 @@ function updateAll() {
             $('#timer-section').text("BREAK TIME");
         }
     } else {
-        $(".sessions-notify").css("display", "none");
+        dismissTaskBar();
         durationMins = 0;
         durationSecs = 30;
         sectionIndex = 0;
@@ -258,8 +297,9 @@ timer.addEventListener('targetAchieved', function(e) {
             }
         }
 
-        updateLabels();
+        updateLabelsBetween();
         localStorage.setItem("TODO", JSON.stringify(LIST));
+
         if (LIST.length != 0) {
             if (LIST[0].taskSection == 0) { //even = focus
                 durationMins = LIST[0].focusM * 1;
