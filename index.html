@@ -156,7 +156,7 @@
             <div id="taskMenu" class="side_menu">
                 <div class="container">
                     <div class="task">
-                        <div class="col-lg-12">
+                        <div class="task-container col-lg-12">
                             <div class="add-to-do">
                                 <input type="text" id="to-do-input" placeholder="Write your task here..." maxlength="25">
                                 <button class="fa fa-plus fa-lg" id="to-do-add-button"></button>
@@ -185,8 +185,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row task-list-header">
+                                <div class="title col-lg-6">
+                                    <h4 class="to-do-title">TASK LIST</h4>
+                                </div>
+                                <div class="list-type col-lg-6">
+                                    <button class="list-type-button float-right"><span>Recently Completed</span></button>
+                                </div>
+                            </div>
 
-                            <h4 class="to-do-title">TASK LIST</h4>
                             <div class="to-do-content">
                                 <div class="to-do-empty" id="empty-task">
                                     <img src="img/task-assets/empty-task.svg">
