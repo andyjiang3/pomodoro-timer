@@ -722,6 +722,16 @@ button:focus {
     margin-left: 10px;
     margin-right: 0px;
     cursor: pointer;
+    user-select: none;
+    /* supported by Chrome and Opera */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
 }
 
 .profile_background:hover {
@@ -749,6 +759,16 @@ button:focus {
     padding: 0px 5px 0px 5px;
     margin-right: 5px;
     cursor: pointer;
+    user-select: none;
+    /* supported by Chrome and Opera */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
 }
 
 .tasks_background:hover {
@@ -1088,13 +1108,13 @@ button:focus {
 .add-to-do {
     justify-content: center;
     display: flex;
-    height: 45px;
-    margin-bottom: 12px;
+    height: 40px;
+    margin-bottom: 5px;
 }
 
 .add-to-do input {
     width: 800px;
-    height: 45px;
+    height: 40px;
     font-size: 16px;
     border: 1px solid rgba(199, 199, 199, 0.8);
     border-top-left-radius: 10px;
@@ -1106,7 +1126,7 @@ button:focus {
 
 .add-to-do button {
     width: 50px;
-    height: 45px;
+    height: 40px;
     background-color: #36A2B0;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -1142,7 +1162,7 @@ button:focus {
 
 .task-options .number-input {
     width: 80px;
-    height: 23px;
+    height: 20px;
     font-size: 14px;
     border-radius: 5px;
     background-color: #EDEDED;
@@ -1151,12 +1171,12 @@ button:focus {
     padding: 0px 8px 0px 8px;
     text-align: center;
     outline: none;
-    line-height: 23px;
+    line-height: 20px;
 }
 
 .task-options .time-input-wrapper {
     width: 90px;
-    height: 25px;
+    height: 20px;
     border-radius: 5px;
     background-color: #EDEDED;
     border: none;
@@ -1171,8 +1191,8 @@ button:focus {
     width: 20px;
     font-size: 14px;
     text-align: center;
-    height: 23px;
-    line-height: 25px;
+    height: 20px;
+    line-height: 20px;
     border: none;
     padding-top: 1px;
     padding-bottom: 1px;
@@ -1184,7 +1204,7 @@ button:focus {
 .task-options .time-input-seperator {
     text-align: center;
     width: 5px;
-    line-height: 23px;
+    line-height: 20px;
     font-size: 15px;
 }
 
@@ -1192,8 +1212,8 @@ button:focus {
 /* TASK - CONTENT */
 
 .to-do-title {
-    margin-top: 45px;
-    margin-bottom: 15px;
+    margin-top: 60px;
+    margin-bottom: 5px;
     margin-left: 115px;
 }
 
@@ -1218,14 +1238,16 @@ button:focus {
 }
 
 .item {
-    width: 860px;
-    height: 38px;
-    min-height: 38px;
+    margin-top: 8px!important;
+    width: 850px;
+    height: 35px;
+    min-height: 35px;
     position: relative;
-    border-bottom: 1px solid #c4c4c4;
     list-style: none;
     padding: 0;
     margin: 0;
+    background-color: #F2F2F2;
+    border-radius: 5px;
 }
 
 .item i.co {
@@ -1248,13 +1270,13 @@ button:focus {
     position: absolute;
     padding: 0;
     margin: 0;
+    margin-left: 8px;
     font-size: 15px;
     left: 0px;
     top: 5px;
     max-width: 800px;
     font-family: "Rubik", sans-serif;
     font-weight: 400!important;
-    line-height: 30px;
     color: #000000;
 }
 
@@ -1266,7 +1288,7 @@ button:focus {
 .item i.de {
     position: absolute;
     right: 15px;
-    top: 15px;
+    top: 11px;
 }
 
 .item i.de:hover {
@@ -1283,7 +1305,7 @@ button:focus {
 
 .to-do-content .task-status {
     color: #ffffff;
-    background-color: #f44a40;
+    background-color: #FA7878;
     font-weight: 300!important;
     font-size: 14px;
     margin-right: 8px;
@@ -1300,7 +1322,7 @@ button:focus {
 }
 
 .to-do-content .task-status-completed {
-    background-color: #39eb6f;
+    background-color: #71DB6E;
     color: #ffffff;
     font-weight: 300!important;
     font-size: 14px;
@@ -1318,7 +1340,7 @@ button:focus {
 }
 
 .to-do-content .task-status-inprogress {
-    background-color: #f8aa1a;
+    background-color: #F4BA26;
     color: #ffffff;
     font-weight: 300!important;
     font-size: 14px;

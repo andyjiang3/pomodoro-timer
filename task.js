@@ -91,7 +91,7 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
         if (done) {
             item = `<li class="item">
                     <p class="text">
-                    <span class="task-status-completed" id="${id}">Complete</span>
+                    <span class="task-status-completed" id="${id}">Completed</span>
                     ${toDo}
                     <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
                     </p>
@@ -126,7 +126,7 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
         } else if (done) {
             item = `<li class="item">
                     <p class="text">
-                    <span class="task-status-completed" id="${id}">Complete</span>
+                    <span class="task-status-completed" id="${id}">Completed</span>
                     ${toDo}
                     <span class="timer-info">| ${sessionsVal} sets | ${focusMinsVal}${focusSecsVal} focus | ${breakMinsVal}${breakSecsVal} break</span>
                     </p>
