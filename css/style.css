@@ -1223,6 +1223,10 @@ button:focus {
     align-content: center;
 }
 
+.task-num {
+    color: #bebebe;
+}
+
 .title .to-do-title {
     margin-left: 113px;
 }
@@ -1249,7 +1253,7 @@ button:focus {
     outline: none !important;
     text-align: center;
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 5px;
     background-origin: border-box;
     background-color: #36A2B0;
     border: double 2px transparent;
@@ -1285,7 +1289,7 @@ button:focus {
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #F2F2F2;
+    background-color: #EDEDED;
     border-radius: 5px;
 }
 
