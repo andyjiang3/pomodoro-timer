@@ -7,6 +7,7 @@ const focusSecs = document.getElementById("focus-input-secs");
 const breakMins = document.getElementById("break-input-mins");
 const breakSecs = document.getElementById("break-input-secs");
 const taskBar = document.querySelector('.sessions-notify');
+const taskNum = $('.task-num');
 
 
 const CHECK = "fa-check-circle";
@@ -40,6 +41,15 @@ if (data2) {
 }
 
 window.onload = function() {
+    if (LIST.length >= 8) {
+        taskNum.css("color", "#CB4E4E");
+        taskNum.text(" (" + LIST.length + ")");
+    } else {
+        taskNum.css("color", "#A7A7A7");
+        taskNum.text(" (" + LIST.length + ")");
+
+    }
+
     if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
         $("#empty-task").show();
     } else {
@@ -165,6 +175,12 @@ function toDoAddToSystem() {
 
         $("#empty-task").hide();
 
+        //Maximum tasks check
+        if (LIST.length >= 8) {
+            taskNum.css("color", "#CB4E4E");
+            return;
+        }
+
         addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, false);
 
         LIST.push({
@@ -186,6 +202,14 @@ function toDoAddToSystem() {
         id++;
         localStorage.setItem("INDEX", JSON.stringify(id));
 
+        if (LIST.length >= 8) {
+            taskNum.css("color", "#CB4E4E");
+            taskNum.text(" (" + LIST.length + ")");
+        } else {
+            taskNum.css("color", "#A7A7A7");
+            taskNum.text(" (" + LIST.length + ")");
+
+        }
 
         //Override default timer
         if (defaultTimer) {
@@ -231,6 +255,9 @@ function removeToDo(element) {
     LIST.splice(removeIndex, 1);
 
     localStorage.setItem("TODO", JSON.stringify(LIST));
+
+    taskNum.css("color", "#A7A7A7");
+    taskNum.text(" (" + LIST.length + ")");
 
     if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
         $("#empty-task").show();

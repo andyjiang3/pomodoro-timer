@@ -29,12 +29,12 @@ To Do:
     Fix when new task is added to empty list (override default timer and fix progress bar)      FIXED
     Update time when new task is added (when default not started)                               FIXED
     Bring user back top timer page if still on task page when start is pressed                  
-    Cap completed task, delete when full
-    Cap max tasks    
+    Cap completed task, delete when full                
+    Cap max tasks                                                                               FIXED
     Animations                                                                                  FIXED
     Notification when new task completed   
     Update default to 25, 5. 
-    when adding new task to empty list, show aniamtion when user is out of task 
+    when adding new task to empty list, show aniamtion when user is out of task                     
     skip bar.
 */
 

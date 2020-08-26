@@ -735,7 +735,7 @@ button:focus {
 }
 
 .profile_background:hover {
-    transition-duration: 1s;
+    transition-duration: 0.7s;
     background-color: #297E89;
 }
 
@@ -772,7 +772,7 @@ button:focus {
 }
 
 .tasks_background:hover {
-    transition-duration: 1s;
+    transition-duration: 0.7s;
     background-color: #297E89;
 }
 
@@ -1137,6 +1137,7 @@ button:focus {
 }
 
 .add-to-do button:hover {
+    transition-duration: 0.5s;
     background-color: #297E89;
 }
 
@@ -1224,7 +1225,7 @@ button:focus {
 }
 
 .task-num {
-    color: #bebebe;
+    color: #A7A7A7;
 }
 
 .title .to-do-title {
@@ -1258,6 +1259,11 @@ button:focus {
     background-color: #36A2B0;
     border: double 2px transparent;
     margin-right: 113px;
+}
+
+.list-type-button:hover {
+    transition-duration: 0.5s;
+    background-color: #297E89;
 }
 
 .to-do-content {
