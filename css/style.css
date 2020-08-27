@@ -1354,7 +1354,7 @@ button:focus {
 
 .to-do-content .task-status {
     color: #ffffff;
-    background-color: #FA7878;
+    background-color: #FF7477;
     font-weight: 300!important;
     font-size: 14px;
     margin-right: 8px;
@@ -1371,7 +1371,7 @@ button:focus {
 }
 
 .to-do-content .task-status-completed {
-    background-color: #71DB6E;
+    background-color: #84DD63;
     color: #ffffff;
     font-weight: 300!important;
     font-size: 14px;
@@ -1389,7 +1389,7 @@ button:focus {
 }
 
 .to-do-content .task-status-inprogress {
-    background-color: #F4BA26;
+    background-color: #FFBE0B;
     color: #ffffff;
     font-weight: 300!important;
     font-size: 14px;
@@ -1409,6 +1409,7 @@ button:focus {
 .to-do-empty {
     margin-top: 0px;
     display: none;
+    text-align: center;
 }
 
 .to-do-empty img {

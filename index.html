@@ -190,15 +190,15 @@
                                     <h4 class="to-do-title">TASK LIST<span class="task-num"> (5)</span></h4>
                                 </div>
                                 <div class="list-type col-lg-6">
-                                    <button class="list-type-button float-right"><span>Recently Completed</span></button>
+                                    <button class="list-type-button float-right" id="list-type"><span id="list-type-span">Recently Completed</span></button>
                                 </div>
                             </div>
 
                             <div class="to-do-content">
                                 <div class="to-do-empty" id="empty-task">
                                     <img src="img/task-assets/empty-task.svg">
-                                    <h3>EMPTY TO-DO LIST</h3>
-                                    <p>Add a task and ${name} will cycle through them.</p>
+                                    <h3 id="empty-task-title">EMPTY TASK LIST</h3>
+                                    <p id="empty-task-desc">Add a task and ${name} will cycle through them.</p>
                                 </div>
                                 <ul id="to-do-list">
                                     <!--
@@ -210,16 +210,18 @@
                                     </li>
                                     -->
                                 </ul>
+                                <!--
                                 <ul id="complete-list">
-                                    <!--
+                                    
                                     <li class="item">
                                         <p class="text"><span class="task-status">In-Complete</span> Do Task - Default<span class="timer-info">| 2 sets | 25m focus | 5m break</span>
                                         </p>
                                         <i class="fa fa-times-circle fa-lg de" job="delete" id="0">    
                                         </i>
                                     </li>
-                                    -->
+                                    
                                 </ul>
+                                -->
                             </div>
                         </div>
 

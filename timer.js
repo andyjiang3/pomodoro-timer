@@ -27,15 +27,17 @@ To Do:
     prevent first task from being deleted if in progress (add in-prog status).                  FIXED                                                                                   
     Change text to default time when task list is empty                                         FIXED                      
     Fix when new task is added to empty list (override default timer and fix progress bar)      FIXED
-    Update time when new task is added (when default not started)                               FIXED
-    Bring user back top timer page if still on task page when start is pressed                  
-    Cap completed task, delete when full                
+    Update time when new task is added (when default not started)                               FIXED                    
+    Cap completed task, delete when full                                                        FIXED
     Cap max tasks                                                                               FIXED
-    Animations                                                                                  FIXED
-    Notification when new task completed   
-    Update default to 25, 5. 
+    Animations                                                                                  FIXED 
+    list type: add completed and new tasks                                                      FIXED
+    list type: add no completed list screen                                                     FIXED  
+    Bring user back top timer page if still on task page when start is pressed
     when adding new task to empty list, show aniamtion when user is out of task                     
-    skip bar.
+    skip bar  
+    Notification when new task completed                                        
+    Update default to 25, 5.          
 */
 
 
@@ -230,11 +232,33 @@ function updateAll() {
 }
 
 function updateTaskList() {
-    $("#to-do-list").empty();
-    loadList(LIST, false);
 
-    $("#complete-list").empty();
-    loadList(COMP, true);
+    if (listType == 0) {
+
+        if (LIST.length == 0) {
+            taskEmptyTitle.text("EMPTY TASK LIST");
+            taskEmptyDesc.css("display", "block");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
+
+        $("#to-do-list").empty();
+        loadList(LIST, false);
+
+    } else {
+
+        if (COMP.length == 0) {
+            taskEmptyTitle.text("NO COMPLETED TASKS");
+            taskEmptyDesc.css("display", "none");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
+
+        $("#to-do-list").empty();
+        loadList(COMP, true);
+    }
 }
 
 timer.addEventListener('secondsUpdated', function(e) {
@@ -282,6 +306,12 @@ timer.addEventListener('targetAchieved', function(e) {
                 //Move task to end of list.
                 //COMP.push(LIST.splice(0, 1));
                 COMP.push(JSON.parse(JSON.stringify(LIST[0])));
+
+                //if more than 5 recently completed, delete oldest one.
+                if (COMP.length >= 6) {
+                    COMP.splice(0, 1);
+                }
+
                 LIST.splice(0, 1);
 
                 localStorage.setItem("TODO", JSON.stringify(LIST));

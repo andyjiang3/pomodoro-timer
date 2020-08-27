@@ -8,11 +8,16 @@ const breakMins = document.getElementById("break-input-mins");
 const breakSecs = document.getElementById("break-input-secs");
 const taskBar = document.querySelector('.sessions-notify');
 const taskNum = $('.task-num');
+const listTypeSpan = $('#list-type-span');
+const taskEmptyTitle = $('#empty-task-title');
+const taskEmptyDesc = $('#empty-task-desc');
 
 
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
+
+var listType = 0;
 
 let LIST, COMP, id;
 
@@ -23,6 +28,7 @@ let LIST, COMP, id;
 let data = localStorage.getItem("TODO");
 let data2 = localStorage.getItem("CTODO")
 
+//incomplete & inprogress tasks
 if (data) {
     LIST = JSON.parse(data);
     id = localStorage.getItem("INDEX");; // set the id to the last one in the list
@@ -32,9 +38,10 @@ if (data) {
     id = 0;
 }
 
+//completed tasks
 if (data2) {
     COMP = JSON.parse(data2);
-    loadList(COMP, true); // load the list to the user interface
+    //loadList(COMP, true);  load the list to the user interface
 
 } else {
     COMP = [];
@@ -50,11 +57,29 @@ window.onload = function() {
 
     }
 
-    if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
-        $("#empty-task").show();
+    if (listType == 0) {
+        if (LIST.length == 0) {
+            taskEmptyTitle.text("EMPTY TASK LIST");
+            taskEmptyDesc.css("display", "block");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
     } else {
-        $("#empty-task").hide();
+        if (COMP.length == 0) {
+            taskEmptyTitle.text("NO COMPLETED TASKS");
+            taskEmptyDesc.css("display", "none");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
     }
+
+    // if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
+    //     $("#empty-task").show();
+    // } else {
+    //     $("#empty-task").hide();
+    // }
     updateAll();
 
     // //there is data and task not complete
@@ -119,8 +144,8 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
 
         }
 
-        const position = "beforeend";
-        compList.insertAdjacentHTML(position, item);
+        const position = "afterbegin";
+        list.insertAdjacentHTML(position, item);
 
     } else {
         console.log("Loading Regular Tasks");
@@ -172,8 +197,9 @@ function toDoAddToSystem() {
     // if the input isn't empty
     if (toDo) {
 
-
-        $("#empty-task").hide();
+        if (listType == 0) {
+            $("#empty-task").hide();
+        }
 
         //Maximum tasks check
         if (LIST.length >= 8) {
@@ -236,6 +262,42 @@ document.addEventListener("keyup", function(even) {
     }
 });
 
+$(document).ready(function() {
+    $('#list-type').click(function() {
+        listType = listType == 0 ? 1 : 0;
+
+        if (listType == 0) {
+            listTypeSpan.text("Recently Completed");
+
+            if (LIST.length == 0) {
+                taskEmptyTitle.text("EMPTY TASK LIST");
+                taskEmptyDesc.css("display", "block");
+                $("#empty-task").show();
+            } else {
+                $("#empty-task").hide();
+            }
+
+            $("#to-do-list").empty();
+            loadList(LIST, false);
+
+        } else {
+            listTypeSpan.text("In-Progress/Incomplete");
+
+            if (COMP.length == 0) {
+                taskEmptyTitle.text("NO COMPLETED TASKS");
+                taskEmptyDesc.css("display", "none");
+                $("#empty-task").show();
+            } else {
+                $("#empty-task").hide();
+            }
+
+            $("#to-do-list").empty();
+            loadList(COMP, true);
+        }
+    });
+});
+
+
 
 
 function completeToDo(element) {
@@ -259,8 +321,22 @@ function removeToDo(element) {
     taskNum.css("color", "#A7A7A7");
     taskNum.text(" (" + LIST.length + ")");
 
-    if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
-        $("#empty-task").show();
+    if (listType == 0) {
+        if (LIST.length == 0) {
+            taskEmptyTitle.text("EMPTY TASK LIST");
+            taskEmptyDesc.css("display", "block");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
+    } else {
+        if (COMP.length == 0) {
+            taskEmptyTitle.text("NO COMPLETED TASKS");
+            taskEmptyDesc.css("display", "none");
+            $("#empty-task").show();
+        } else {
+            $("#empty-task").hide();
+        }
     }
 
     if ($("#to-do-list li").length == 0) {
