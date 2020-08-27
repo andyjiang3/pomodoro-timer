@@ -6,12 +6,10 @@ const focusMins = document.getElementById("focus-input-mins");
 const focusSecs = document.getElementById("focus-input-secs");
 const breakMins = document.getElementById("break-input-mins");
 const breakSecs = document.getElementById("break-input-secs");
-const taskBar = document.querySelector('.sessions-notify');
 const taskNum = $('.task-num');
 const listTypeSpan = $('#list-type-span');
 const taskEmptyTitle = $('#empty-task-title');
 const taskEmptyDesc = $('#empty-task-desc');
-
 
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
@@ -21,14 +19,14 @@ var listType = 0;
 
 let LIST, COMP, id;
 
-
-
+//Empty Task and Completed Task arraylist. 
 //localStorage.removeItem("TODO");
 //localStorage.removeItem("CTODO");
+
 let data = localStorage.getItem("TODO");
 let data2 = localStorage.getItem("CTODO")
 
-//incomplete & inprogress tasks
+//Get vincomplete & inprogress tasks from local storage
 if (data) {
     LIST = JSON.parse(data);
     id = localStorage.getItem("INDEX");; // set the id to the last one in the list
@@ -38,10 +36,9 @@ if (data) {
     id = 0;
 }
 
-//completed tasks
+//Get completed tasks from local storage
 if (data2) {
     COMP = JSON.parse(data2);
-    //loadList(COMP, true);  load the list to the user interface
 
 } else {
     COMP = [];
@@ -75,20 +72,7 @@ window.onload = function() {
         }
     }
 
-    // if ($("#to-do-list li").length == 0 && $("#complete-list li").length == 0) {
-    //     $("#empty-task").show();
-    // } else {
-    //     $("#empty-task").hide();
-    // }
     updateAll();
-
-    // //there is data and task not complete
-    // if (LIST.length != 0 && LIST[0].done == false) {
-    //     updateAll();
-    // } else {
-    //     updateAll();
-    //     $(".sessions-notify").css("display", "none");
-    // }
 
 }
 
@@ -98,10 +82,6 @@ function loadList(array, comp) {
 
     });
 }
-
-
-
-
 
 function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, comp) {
 
@@ -297,21 +277,9 @@ $(document).ready(function() {
     });
 });
 
-
-
-
-function completeToDo(element) {
-    // element.classList.toggle(CHECK);
-    // element.classList.toggle(UNCHECK);
-    // element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH);
-
-    // LIST[element.id].done = LIST[element.id].done ? false : true;
-}
-
 function removeToDo(element) {
     element.parentNode.parentNode.removeChild(element.parentNode);
 
-    //LIST[element.id].trash = true;
     var removeIndex = LIST.findIndex(({ id }) => id == element.id);
     console.log(removeIndex);
     LIST.splice(removeIndex, 1);
@@ -380,10 +348,6 @@ list.addEventListener("click", function(event) {
         elementJob = element.attributes.job.value; // complete or delete
     }
 
-    // if (elementJob == "complete") {
-    //     completeToDo(element);
-    // } 
-
     if (elementJob == "delete") {
         removeToDo(element);
     }
@@ -409,47 +373,6 @@ $("#sessions-input").keypress(function(evt) {
     }
 });
 
-
-
 document.getElementById("to-do-add-button").addEventListener("click", function() {
     toDoAddToSystem();
 });
-
-
-function showTaskBar() {
-    taskBar.classList.add('display');
-}
-
-function dismissTaskBar() {
-    taskBar.classList.remove('display');
-}
-
-function dismissAndShowBar() {
-    taskBar.classList.remove('display');
-    taskBar.addEventListener(transitionEvent, showRemove);
-}
-
-var transitionEvent = whichTransitionEvent();
-
-function showRemove(event) {
-    taskBar.removeEventListener(transitionEvent, showRemove);
-    //setTimeout(function() { taskBar.classList.remove('display'); }, 700);
-    taskBar.classList.add('display');
-}
-
-function whichTransitionEvent() {
-    var t;
-    var el = document.createElement('fakeelement');
-    var transitions = {
-        'transition': 'transitionend',
-        'OTransition': 'oTransitionEnd',
-        'MozTransition': 'transitionend',
-        'WebkitTransition': 'webkitTransitionEnd'
-    }
-
-    for (t in transitions) {
-        if (el.style[t] !== undefined) {
-            return transitions[t];
-        }
-    }
-}
