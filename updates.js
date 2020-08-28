@@ -89,6 +89,15 @@ function updateAll() {
 
 function updateTaskList() {
 
+    if (LIST.length >= 8) {
+        taskNum.css("color", "#CB4E4E");
+        taskNum.text(" (" + LIST.length + ")");
+    } else {
+        taskNum.css("color", "#A7A7A7");
+        taskNum.text(" (" + LIST.length + ")");
+
+    }
+
     if (listType == 0) {
 
         if (LIST.length == 0) {

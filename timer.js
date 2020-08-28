@@ -33,15 +33,21 @@ To Do:
     Animations                                                                                  FIXED 
     list type: add completed and new tasks                                                      FIXED
     list type: add no completed list screen                                                     FIXED  
-    Bring user back top timer page if still on task page when start is pressed
-    when adding new task to empty list, show aniamtion when user is out of task                     
-    skip bar  
-    Notification when new task completed                                        
-    Update default to 25, 5.          
+    Bring user back top timer page if still on task page when start is pressed                  FIXED
+    when adding new task to empty list, show aniamtion when user is out of task                              
+    skip bar                                                                                    
+    Notification when new task completed                                                                                    
+    Update default to 25, 5.   
+    prevent 0s        
 */
 
 
 function startPauseTimer() {
+
+    if (openedTask) {
+        document.getElementById("taskMenu").style.width = "0px";
+        openedTask = false;
+    }
 
     if (!started) {
 
@@ -84,19 +90,7 @@ document.addEventListener('keydown', function(event) {
         if (document.activeElement != document.getElementById('to-do-input')) {
             event.preventDefault();
 
-            if (!started) {
-
-                timerSetup();
-
-            } else {
-                if (timer.isRunning() == true) {
-                    timer.pause();
-                    $("#pausestart").attr("src", "img/nav/startNew2.svg");
-                } else {
-                    timer.start();
-                    $("#pausestart").attr("src", "img/nav/pauseNew2.svg");
-                }
-            }
+            startPauseTimer();
         }
     }
 
@@ -141,30 +135,7 @@ function setTime() {
 
 }
 
-timer.addEventListener('secondsUpdated', function(e) {
-    var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
-    $('#minutes').text(minutes);
-    var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
-    $('#seconds').text(seconds);
-
-    //PROGRESS BAR
-    var totalTime = (timer.getTimeValues().minutes * 60) + timer.getTimeValues().seconds;
-    var width = totalTime / ((durationMins * 60) + durationSecs);
-    $('#timer-progress').width(width * 100 + "%");
-
-});
-
-timer.addEventListener('reset', function(e) {
-    var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
-    $('#minutes').text(minutes);
-    var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
-    $('#seconds').text(seconds);
-
-    //PROGRESS BAR
-    $('#timer-progress').width("100%");
-});
-
-timer.addEventListener('targetAchieved', function(e) {
+function nextSection() {
 
     if (LIST.length != 0 && LIST[0].done == false) {
 
@@ -258,4 +229,43 @@ timer.addEventListener('targetAchieved', function(e) {
 
     started = false;
 
+}
+
+
+
+timer.addEventListener('secondsUpdated', function(e) {
+    var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+    $('#minutes').text(minutes);
+    var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
+    $('#seconds').text(seconds);
+
+    //PROGRESS BAR
+    var totalTime = (timer.getTimeValues().minutes * 60) + timer.getTimeValues().seconds;
+    var width = totalTime / ((durationMins * 60) + durationSecs);
+    $('#timer-progress').width(width * 100 + "%");
+
+});
+
+timer.addEventListener('reset', function(e) {
+    var minutes = timer.getTimeValues().minutes < 10 ? "0" + timer.getTimeValues().minutes : timer.getTimeValues().minutes;
+    $('#minutes').text(minutes);
+    var seconds = timer.getTimeValues().seconds < 10 ? "0" + timer.getTimeValues().seconds : timer.getTimeValues().seconds;
+    $('#seconds').text(seconds);
+
+    //PROGRESS BAR
+    $('#timer-progress').width("100%");
+});
+
+timer.addEventListener('targetAchieved', function(e) {
+
+    nextSection();
+
+});
+
+$(document).ready(function() {
+    $('#skip').click(function() {
+        timer.stop();
+        $("#pausestart").attr("src", "img/nav/startNew2.svg");
+        nextSection();
+    });
 });
