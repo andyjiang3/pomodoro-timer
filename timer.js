@@ -35,8 +35,8 @@ To Do:
     list type: add no completed list screen                                                     FIXED  
     Bring user back top timer page if still on task page when start is pressed                  FIXED
     when adding new task to empty list, show aniamtion when user is out of task                              
-    skip bar                                                                                    
-    Notification when new task completed                                                                                    
+    skip bar                                                                                    FIXED                                           
+    Notification when new task completed                                                        FIXED                                                                       
     Update default to 25, 5.   
     prevent 0s        
 */
@@ -150,6 +150,8 @@ function nextSection() {
             if (LIST[0].currentSession == LIST[0].maxSessions) {
                 LIST[0].done = true;
 
+                taskName.text(LIST[0].name);
+                completedPopup.css("display", "flex");
 
                 // $("ul#to-do-list li:first .task-status").text("Completed");
                 // $("ul#to-do-list li:first .task-status").css("background-color", "#39eb6f");
@@ -175,6 +177,8 @@ function nextSection() {
                     updateLabels();
                     //dont go to next step
                 }
+
+
             }
         }
 

@@ -10,6 +10,10 @@ const taskNum = $('.task-num');
 const listTypeSpan = $('#list-type-span');
 const taskEmptyTitle = $('#empty-task-title');
 const taskEmptyDesc = $('#empty-task-desc');
+const completedPopup = $('.task-popup-bg');
+const taskName = $('.task-popup-name');
+
+
 
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
@@ -26,7 +30,7 @@ let LIST, COMP, id;
 let data = localStorage.getItem("TODO");
 let data2 = localStorage.getItem("CTODO")
 
-//Get vincomplete & inprogress tasks from local storage
+//Get incomplete & in-progress tasks from local storage
 if (data) {
     LIST = JSON.parse(data);
     id = localStorage.getItem("INDEX");; // set the id to the last one in the list
@@ -44,6 +48,7 @@ if (data2) {
     COMP = [];
 }
 
+//On window load - Get data from local storage and update labels
 window.onload = function() {
     if (LIST.length >= 8) {
         taskNum.css("color", "#CB4E4E");
@@ -76,6 +81,7 @@ window.onload = function() {
 
 }
 
+//Load task list
 function loadList(array, comp) {
     array.forEach(function(item) {
         addToDo(item.name, item.id, item.started, item.done, item.taskSection, item.currentSession, item.maxSessions, item.focusM, item.focusS, item.breakM, item.breakS, comp);
@@ -83,6 +89,7 @@ function loadList(array, comp) {
     });
 }
 
+//Add task to list (with status and timer infos)
 function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, comp) {
 
 
@@ -101,6 +108,7 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
     //                 <p class="text ${LINE}">
 
     //                 </p>
+
     if (comp) {
         console.log("Loading Completed Tasks");
         if (done) {
@@ -166,6 +174,7 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
     }
 }
 
+//Task system - Add new task to local storage and update task list 
 function toDoAddToSystem() {
     const toDo = input.value;
     const sessionsVal = sessions.value;
@@ -187,7 +196,9 @@ function toDoAddToSystem() {
             return;
         }
 
-        addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, false);
+        if (listType == 0) {
+            addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, false);
+        }
 
         LIST.push({
             name: toDo,
@@ -203,11 +214,12 @@ function toDoAddToSystem() {
             breakS: breakSecsVal
         });
 
-        // add item to localstorage ( this code must be added where the LIST array is updated)
+        //Update local storage
         localStorage.setItem("TODO", JSON.stringify(LIST));
         id++;
         localStorage.setItem("INDEX", JSON.stringify(id));
 
+        //Update list number label
         if (LIST.length >= 8) {
             taskNum.css("color", "#CB4E4E");
             taskNum.text(" (" + LIST.length + ")");
@@ -217,7 +229,7 @@ function toDoAddToSystem() {
 
         }
 
-        //Override default timer
+        //If new task is added to empty list, override default timer and start new task
         if (defaultTimer) {
             started = false;
             timer.stop();
@@ -233,14 +245,11 @@ function toDoAddToSystem() {
         }
 
     }
+
+    //Reset task name
     input.value = "";
 }
 
-document.addEventListener("keyup", function(even) {
-    if (event.keyCode == 13) {
-        toDoAddToSystem();
-    }
-});
 
 $(document).ready(function() {
     $('#list-type').click(function() {
@@ -352,11 +361,11 @@ list.addEventListener("click", function(event) {
         removeToDo(element);
     }
 
-    // add item to localstorage ( this code must be added where the LIST array is updated)
+    //Update local storage
     localStorage.setItem("TODO", JSON.stringify(LIST));
 });
 
-//prevent editing and deleting of sessions number
+//Prevent editing and deleting of sessions number
 $("#sessions-input").keypress(function(evt) {
     evt.preventDefault();
 }).keydown(function(e) {
@@ -370,9 +379,26 @@ $("#sessions-input").keypress(function(evt) {
 }).keydown(function(e) {
     if (e.keyCode === 8 || e.keyCode === 46) {
         return false;
+    }
+});
+
+//"Enter" key support for adding task
+document.addEventListener("keyup", function(even) {
+    if (event.keyCode == 13) {
+        toDoAddToSystem();
     }
 });
 
 document.getElementById("to-do-add-button").addEventListener("click", function() {
     toDoAddToSystem();
+});
+
+document.getElementById("newtask-button").addEventListener("click", function() {
+    completedPopup.css("display", "none");
+    openedTask = true;
+    document.getElementById("taskMenu").style.width = "100%";
+});
+
+document.getElementById("close-button").addEventListener("click", function() {
+    completedPopup.css("display", "none");
 });
