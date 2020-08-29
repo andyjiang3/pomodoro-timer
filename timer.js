@@ -34,11 +34,11 @@ To Do:
     list type: add completed and new tasks                                                      FIXED
     list type: add no completed list screen                                                     FIXED  
     Bring user back top timer page if still on task page when start is pressed                  FIXED
-    when adding new task to empty list, show aniamtion when user is out of task                              
+    when adding new task to empty list, show aniamtion when user is out of task                                       
     skip bar                                                                                    FIXED                                           
     Notification when new task completed                                                        FIXED                                                                       
-    Update default to 25, 5.   
-    prevent 0s        
+    Update default to 25, 5.                                                                    FIXED
+    prevent 0s                                                                                  FIXED
 */
 
 
@@ -146,6 +146,7 @@ function nextSection() {
             LIST[0].currentSession++;
             LIST[0].taskSection = 0;
             updateLabels();
+
             //task completed
             if (LIST[0].currentSession == LIST[0].maxSessions) {
                 LIST[0].done = true;
@@ -212,12 +213,12 @@ function nextSection() {
         }
 
         if (sectionIndex == 0) {
-            durationMins = 0;
-            durationSecs = 30;
+            durationMins = 25;
+            durationSecs = 0;
 
         } else {
-            durationMins = 0;
-            durationSecs = 25;
+            durationMins = 5;
+            durationSecs = 0;
         }
     }
 

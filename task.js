@@ -11,7 +11,7 @@ const listTypeSpan = $('#list-type-span');
 const taskEmptyTitle = $('#empty-task-title');
 const taskEmptyDesc = $('#empty-task-desc');
 const completedPopup = $('.task-popup-bg');
-const taskName = $('.task-popup-name');
+const taskName = $('#task-popup-name');
 
 
 
@@ -96,11 +96,17 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH : "";
 
-    focusMinsVal = focusMinsVal < 10 ? focusMinsVal * 1 + "m" : focusMinsVal + "m";
-    breakMinsVal = breakMinsVal < 10 ? breakMinsVal * 1 + "m" : breakMinsVal + "m";
+    focusMinsVal = focusMinsVal < 10 ? focusMinsVal * 1 : focusMinsVal;
+    breakMinsVal = breakMinsVal < 10 ? breakMinsVal * 1 : breakMinsVal;
+
+    focusSecsVal = focusSecsVal < 10 ? focusSecsVal * 1 : focusSecsVal;
+    breakSecsVal = breakSecsVal < 10 ? breakSecsVal * 1 : breakSecsVal;
 
     focusSecsVal = focusSecsVal == 0 ? "" : focusSecsVal + "s";
     breakSecsVal = breakSecsVal == 0 ? "" : breakSecsVal + "s";
+
+    focusMinsVal = focusMinsVal == 0 ? "" : focusMinsVal + "m";
+    breakMinsVal = breakMinsVal == 0 ? "" : breakMinsVal + "m";
 
     var item = '';
 
@@ -178,14 +184,15 @@ function addToDo(toDo, id, started, done, taskSection, currentSession, sessionsV
 function toDoAddToSystem() {
     const toDo = input.value;
     const sessionsVal = sessions.value;
-    const focusMinsVal = focusMins.value;
-    const focusSecsVal = focusSecs.value;
-    const breakMinsVal = breakMins.value;
-    const breakSecsVal = breakSecs.value;
+    var focusMinsVal = focusMins.value;
+    var focusSecsVal = focusSecs.value;
+    var breakMinsVal = breakMins.value;
+    var breakSecsVal = breakSecs.value;
 
     // if the input isn't empty
     if (toDo) {
 
+        //Hide emptry task ui on new task
         if (listType == 0) {
             $("#empty-task").hide();
         }
@@ -196,6 +203,14 @@ function toDoAddToSystem() {
             return;
         }
 
+        //Runnable timer check
+        if (focusMinsVal == "00" && focusSecsVal == "00") {
+            focusSecsVal = "01";
+        } else if (breakMinsVal == "00" && breakSecsVal == "00") {
+            breakSecsVal = "01";
+        }
+
+        //List type check
         if (listType == 0) {
             addToDo(toDo, id, false, false, 0, 0, sessionsVal, focusMinsVal, focusSecsVal, breakMinsVal, breakSecsVal, false);
         }

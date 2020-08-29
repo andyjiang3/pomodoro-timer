@@ -14,12 +14,12 @@ function updateLabels() {
 
         dismissTaskBar();
 
-        durationMins = 0;
-        durationSecs = 30;
+        durationMins = 25;
+        durationSecs = 0;
         sectionIndex = 0;
 
-        $('#minutes').text(durationMins + "0");
-        $('#seconds').text(durationSecs);
+        $('#minutes').text(durationMins);
+        $('#seconds').text(durationSecs + "0");
 
         defaultTimer = true;
     }
@@ -41,12 +41,12 @@ function updateLabelsBetween() {
 
         dismissTaskBar();
 
-        durationMins = 0;
-        durationSecs = 30;
+        durationMins = 25;
+        durationSecs = 0;
         sectionIndex = 0;
 
-        $('#minutes').text(durationMins + "0");
-        $('#seconds').text(durationSecs);
+        $('#minutes').text(durationMins);
+        $('#seconds').text(durationSecs + "0");
 
         defaultTimer = true;
     }
@@ -78,11 +78,11 @@ function updateAll() {
         }
     } else {
         dismissTaskBar();
-        durationMins = 0;
-        durationSecs = 30;
+        durationMins = 25;
+        durationSecs = 0;
         sectionIndex = 0;
-        $('#minutes').text(durationMins + "0");
-        $('#seconds').text(durationSecs);
+        $('#minutes').text(durationMins);
+        $('#seconds').text(durationSecs + "0");
 
     }
 }
