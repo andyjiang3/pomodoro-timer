@@ -39,6 +39,8 @@ To Do:
     Notification when new task completed                                                        FIXED                                                                       
     Update default to 25, 5.                                                                    FIXED
     prevent 0s                                                                                  FIXED
+    show session after completed ui passed
+    prevent spamming of session
 */
 
 

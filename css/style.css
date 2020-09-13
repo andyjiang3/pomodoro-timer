@@ -846,12 +846,12 @@ button:focus {
     position: absolute;
     left: 0;
     top: 0;
-    padding-top: 150px;
     width: 100%;
     height: 100vh;
     overflow: hidden;
     display: none;
     justify-content: center;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 100;
 }
@@ -1018,6 +1018,7 @@ button:focus {
     border-radius: 8px;
     opacity: 0;
     visibility: hidden;
+    z-index: 6;
 }
 
 .profile_options {
