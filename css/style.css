@@ -4419,7 +4419,7 @@ h6 {
         padding-top: 80px !important;
         padding-bottom: 80px !important;
         background-image: none !important;
-        background-color: #fcf8ff;
+        background-color: #ffffff;
     }
     .contact_info {
         margin-bottom: 50px;
@@ -4583,6 +4583,7 @@ h6 {
 .footer_area {
     padding: 120px 0;
     position: relative;
+    background-color: #ffffff;
 }
 
 .footer_area:before {
